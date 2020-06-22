@@ -23,7 +23,8 @@ class LoginPage extends React.Component {
         })
             .then(response => {
                 console.log(response);
-                this.setState({ accessToken: response.data.accessToken })
+                // this.setState({ accessToken: response.data.accessToken })
+                this.props.history.push('/admin');
             })
             .catch(error => {
                 console.log(error);
@@ -55,7 +56,8 @@ class LoginPage extends React.Component {
                 <Button onClick={this.submitData}>Submit</Button>
             </Container >
         )
-        }
+    }
 }
+
 
 export { LoginPage }
