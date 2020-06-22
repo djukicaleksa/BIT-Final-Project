@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { baseAPI } from '../shared/baseAPI'
 
 // http://localhost:3333/api/companies
@@ -33,3 +31,5 @@ class ServicePeople {
             .catch(error => console.log(error))
     }
 }
+
+export const servicePeople = new ServicePeople();
