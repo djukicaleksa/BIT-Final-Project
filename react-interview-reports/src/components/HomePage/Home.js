@@ -6,6 +6,7 @@ import { Container, Row, Col } from 'react-materialize';
 import { servicePeople } from '../../services/servicePeople';
 import { Candidate } from '../CandidateList/Candidate'
 import { ReportList } from '../ReportList';
+import { LoginPage } from '../Admin/LoginPage';
 
 
 class Home extends React.Component {
