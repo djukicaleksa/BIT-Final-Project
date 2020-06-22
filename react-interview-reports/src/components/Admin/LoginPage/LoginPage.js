@@ -1,33 +1,30 @@
 import React from 'react';
 import { TextInput, Container, Button } from 'react-materialize';
-import axios from 'axios';
+import { postAdmin } from '../../../services/serviceAdmin';
 
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isValid: false,
             email: '',
             password: '',
-            accessToken: null
+            error: false
         }
     }
-    loginCheck = (event) => {
+    loginData = (event) => {
         this.setState({ [event.target.name]: event.target.value })
     }
 
     submitData = () => {
-        axios.post('http://localhost:3333/login', {
-            email: this.state.email,
-            password: this.state.password
-        })
+        postAdmin(this.state)
             .then(response => {
                 console.log(response);
-                // this.setState({ accessToken: response.data.accessToken })
-                this.props.history.push('/admin');
+                this.props.history.push('/admin')
+                sessionStorage.setItem('validate', true)
             })
             .catch(error => {
-                console.log(error);
+                console.log(error)
+                this.setState({ error: true });
             });
     }
 
@@ -38,7 +35,7 @@ class LoginPage extends React.Component {
             <Container>
                 <h1>Login</h1>
                 <TextInput
-                    onChange={this.loginCheck}
+                    onChange={this.loginData}
                     email
                     id="TextInput-4"
                     label="Email"
@@ -47,13 +44,15 @@ class LoginPage extends React.Component {
                 />
 
                 <TextInput
-                    onChange={this.loginCheck}
+                    onChange={this.loginData}
                     id="TextInput-4"
                     label="Password"
                     name="password"
                     password
                 />
-                <Button onClick={this.submitData}>Submit</Button>
+                {this.state.error ? <div>email or password is not correct</div> : ""}
+                <Button onClick={this.submitData}>Login</Button>
+
             </Container >
         )
     }
