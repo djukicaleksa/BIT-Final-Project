@@ -21,6 +21,7 @@ export const Candidate = ({ name, email, key, id }) => {
                 reveal
                 revealIcon={<Icon></Icon>}
                 title={name}
+                
             >
                 <p>
                     {email}

@@ -5,6 +5,7 @@ import { Search } from './Search/Search';
 import { Container, Row, Col } from 'react-materialize';
 import { servicePeople } from '../../services/servicePeople';
 import { Candidate } from '../CandidateList/Candidate'
+import { ReportList } from '../ReportList';
 
 
 class Home extends React.Component {
@@ -58,6 +59,7 @@ class Home extends React.Component {
 
 
                     </Row>
+                    <ReportList />
                 </Container>
             </div>
         )
