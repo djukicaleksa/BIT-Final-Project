@@ -26,4 +26,5 @@ const CandidatesInfo = ({ name, email, birthday, education}) =>{
     )
 }
 
+
 export {CandidatesInfo};
