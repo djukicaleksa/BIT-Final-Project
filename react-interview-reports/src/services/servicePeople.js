@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { baseAPI } from '../shared/baseAPI'
 
 // http://localhost:3333/api/companies

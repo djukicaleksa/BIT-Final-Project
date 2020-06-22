@@ -2,7 +2,13 @@ import React from 'react';
 import {NavItem, Navbar, Icon} from 'react-materialize';
 
 
-const Search = ()=>{
+const Search = ({searchedCandidates})=>{
+
+const onSearch=(e)=>{
+    const value = e.target.value;
+    searchedCandidates(value)
+}
+
     return(
         <Navbar
   alignLinks="right"
@@ -20,7 +26,7 @@ const Search = ()=>{
     outDuration: 200,
     preventScrolling: true
   }}
-  search
+  search onChange={onSearch}
 >
   <NavItem href="">
     Getting started
