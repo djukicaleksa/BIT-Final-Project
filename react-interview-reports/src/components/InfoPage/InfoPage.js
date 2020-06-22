@@ -4,20 +4,27 @@ import {servicePeople} from '../../services/servicePeople';
 import {CandidatesInfo} from './CandidatesInfo/CandidatesInfo';
 import {Container} from 'react-materialize';
 import styles from './InfoPage.module.css';
+import { ReportList } from './ReportList/ReportList';
 
 class InfoPage extends React.Component{
     constructor(props){
         super(props);
-
-        this.state={
-            candidates: []
+        this.state = {
+            candidates: [],
+            reports: []
         }
     }
-    componentDidMount(){
+    componentDidMount() {
         servicePeople.getCandidatesInfo(this.props.match.params.id)
-        .then(data=>{
-            this.setState({candidates: data})
-        })
+            .then(data => {
+                this.setState({ candidates: data })
+            })
+            this.getReports();
+    }
+
+    getReports = () => {
+        servicePeople.getReports()
+            .then(reportList => this.setState({ reports: reportList }))
     }
 
 
@@ -33,10 +40,11 @@ class InfoPage extends React.Component{
                 education={this.state.candidates.education}
                 birthday={this.state.candidates.birthday}
             />
+            <ReportList reports={this.state.reports} candidateId={this.props.match.params.id}></ReportList>
            </Container>
             </div>
         )
     }
 }
 
-export{InfoPage};
+export { InfoPage };

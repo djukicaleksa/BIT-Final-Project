@@ -5,7 +5,7 @@ import { Search } from './Search/Search';
 import { Container, Row, Col } from 'react-materialize';
 import { servicePeople } from '../../services/servicePeople';
 import { Candidate } from '../CandidateList/Candidate'
-import { ReportList } from '../ReportList';
+import { ReportList } from '../InfoPage/ReportList/ReportList';
 
 
 class Home extends React.Component {
@@ -28,7 +28,9 @@ class Home extends React.Component {
 
     searchedCandidates = (textInput) => {
 
-        this.state.isFiltered ? this.setState({ isFiltered: true }) : this.setState({ isFiltered: false })
+        // this.setState((previousState) => {
+        //     return { isFiltered: !previousState.isFiltered }
+        // })
         const newCandidate = this.state.candidatesList.filter((candidate) => {
             return candidate.name.toLowerCase().includes(textInput.toLowerCase());
         });
@@ -48,18 +50,11 @@ class Home extends React.Component {
 
 
                         <main className={style.main}>
-                            {this.state.isFiltered ?
-                                (this.state.candidatesList.map((candidate, i) => {
-                                    return <Candidate name={candidate.name} key={candidate.id} />
-                                })) : (this.state.filteredCandidate.map((candidate, i) => {
-                                    return <Candidate name={candidate.name} email={candidate.email} id={candidate.id} />
-                                }))}
+                            {this.state.filteredCandidate.map((candidate, i) => {
+                                return <Candidate name={candidate.name} email={candidate.email} id={candidate.id} />
+                            })}
                         </main>
-
-
-
                     </Row>
-                    {/* <ReportList /> */}
                 </Container>
             </div>
         )

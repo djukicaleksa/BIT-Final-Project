@@ -2,7 +2,7 @@ import React from 'react'
 
 export const ReportList = (props) => {
 
-    let thisCandidatesReports = props.reports.filter(report => report.id === props.candidateId)
+    let thisCandidatesReports = props.reports.filter(report => report.candidateId === props.candidateId)
 
 
     return (
@@ -19,7 +19,7 @@ export const ReportList = (props) => {
 
                     return (<tr>
                         <td>{report.companyName}</td>
-                        <td>{report.interviewData}</td>
+                        <td>{report.interviewDate}</td>
                         <td>{report.status}</td>
 
                     </tr>)
