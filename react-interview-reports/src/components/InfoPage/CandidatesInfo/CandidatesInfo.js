@@ -1,32 +1,28 @@
 import React from 'react';
-import {Row, Col, Card, CardTitle, Icon} from 'react-materialize';
+import {Row, Col} from 'react-materialize';
+import styles from './CandidatesInfo.module.css';
 
-
-const CandidatesInfo = ({image, name, email, dob, education}) =>{
+const CandidatesInfo = ({ name, email, birthday, education}) =>{
     return(
-        <Row>
-  <Col
-    m={6}
-    s={12}
-  >
-    <Card
-      closeIcon={<Icon>close</Icon>}
-      header={<CardTitle image="https://materializecss.com/images/sample-1.jpg" />}
-      horizontal
-      revealIcon={<Icon>more_vert</Icon>}
-    >
-      <p>Name: </p>
-    <h5>{name}</h5>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <p>Email: </p>
-    <h5>{email}</h5>
-    </Card>
-    
-  </Col>
-</Row>
+      
+          <Row>
+              <Col lg={3} offset="m1">
+                    <img className={styles.img} src="../userImg.jpg"/>
+              </Col>
+              <Col lg={4}>
+                <p>Name:</p>
+                <h5 className={styles.name}>{name}</h5>
+                <p>Email:</p>
+                 <h5>{email}</h5>
+              </Col>
+              <Col lg={4} >
+                    <p>Date of Birth:</p>
+                    <h5 className={styles.date}>{birthday}</h5>
+                    <p>Education:</p>
+                    <h5>{education}</h5>
+              </Col>
+          </Row>
+
     )
 }
 

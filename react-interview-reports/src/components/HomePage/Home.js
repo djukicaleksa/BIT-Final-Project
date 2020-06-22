@@ -54,11 +54,7 @@ class Home extends React.Component {
                                 return <Candidate name={candidate.name} email={candidate.email} id={candidate.id} />
                             })}
                         </main>
-
-
-
                     </Row>
-
                 </Container>
             </div>
         )
