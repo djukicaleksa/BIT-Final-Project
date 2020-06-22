@@ -52,7 +52,7 @@ class Home extends React.Component {
                                 (this.state.candidatesList.map((candidate, i) => {
                                     return <Candidate name={candidate.name} key={candidate.id} />
                                 })) : (this.state.filteredCandidate.map((candidate, i) => {
-                                    return <Candidate name={candidate.name} email={candidate.email} />
+                                    return <Candidate name={candidate.name} email={candidate.email} id={candidate.id} />
                                 }))}
                         </main>
 

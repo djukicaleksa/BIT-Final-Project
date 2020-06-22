@@ -1,11 +1,11 @@
 import React from 'react';
-
+import {Link} from 'react-router-dom';
 import { Row, Col, Card, Icon, CardTitle } from 'react-materialize';
 
 
 
 
-export const Candidate = ({ name, email, key }) => {
+export const Candidate = ({ name, email, key, id }) => {
     return (
 
 
@@ -14,7 +14,7 @@ export const Candidate = ({ name, email, key }) => {
             s={12}
             key={key}
         >
-            <Card
+           <Link to={`./info/${id}`}><Card
                 className='center-align'
                 closeIcon={<Icon>close</Icon>}
                 header={<CardTitle image='./userImg.jpg' reveal waves="light" />}
@@ -27,6 +27,7 @@ export const Candidate = ({ name, email, key }) => {
                     {email}
                 </p>
             </Card>
+            </Link> 
         </Col>
 
     )
