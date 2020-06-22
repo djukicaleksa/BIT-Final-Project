@@ -59,7 +59,7 @@ class Home extends React.Component {
 
 
                     </Row>
-                    <ReportList />
+                    {/* <ReportList /> */}
                 </Container>
             </div>
         )
