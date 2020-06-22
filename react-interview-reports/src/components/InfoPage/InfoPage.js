@@ -3,7 +3,7 @@ import { Header } from '../../components/HomePage/Header/Header';
 import { servicePeople } from '../../services/servicePeople';
 import { CandidatesInfo } from './CandidatesInfo/CandidatesInfo';
 import { Container } from 'react-materialize';
-import { ReportList } from '../ReportList';
+import { ReportList } from './ReportList/ReportList';
 
 class InfoPage extends React.Component {
     constructor(props) {
@@ -19,6 +19,7 @@ class InfoPage extends React.Component {
             .then(data => {
                 this.setState({ candidates: data })
             })
+            this.getReports();
     }
 
     getReports = () => {

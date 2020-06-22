@@ -5,7 +5,7 @@ import { Search } from './Search/Search';
 import { Container, Row, Col } from 'react-materialize';
 import { servicePeople } from '../../services/servicePeople';
 import { Candidate } from '../CandidateList/Candidate'
-import { ReportList } from '../ReportList';
+import { ReportList } from '../InfoPage/ReportList/ReportList';
 
 
 class Home extends React.Component {
