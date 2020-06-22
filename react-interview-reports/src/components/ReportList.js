@@ -2,7 +2,7 @@ import React from 'react'
 
 export const ReportList = (props) => {
 
-    let thisCandidatesReports = props.reports.foreach(report => report.id === props.candidateId)
+    let thisCandidatesReports = props.reports.filter(report => report.id === props.candidateId)
 
 
     return (
