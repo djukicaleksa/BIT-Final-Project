@@ -5,8 +5,7 @@ import { Search } from './Search/Search';
 import { Container, Row, Col } from 'react-materialize';
 import { servicePeople } from '../../services/servicePeople';
 import { Candidate } from '../CandidateList/Candidate'
-import { ReportList } from '../ReportList';
-import { LoginPage } from '../Admin/LoginPage';
+import { ReportList } from '../InfoPage/ReportList/ReportList';
 
 
 class Home extends React.Component {
@@ -55,11 +54,7 @@ class Home extends React.Component {
                                 return <Candidate name={candidate.name} email={candidate.email} id={candidate.id} />
                             })}
                         </main>
-
-
-
                     </Row>
-
                 </Container>
             </div>
         )
