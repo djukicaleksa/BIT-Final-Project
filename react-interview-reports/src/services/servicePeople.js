@@ -33,3 +33,5 @@ class ServicePeople {
             .catch(error => console.log(error))
     }
 }
+
+export const servicePeople = new ServicePeople();
