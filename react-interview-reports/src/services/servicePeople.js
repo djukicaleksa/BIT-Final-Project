@@ -19,6 +19,12 @@ class ServicePeople {
             .catch(error => console.log(error))
     }
 
+    getCandidatesInfo(id) {
+        return baseAPI.get(`candidates/${id}`)
+            .then(response => response.data)
+            .catch(error => console.log(error))
+    }
+
     getReports() {
         return baseAPI.get('reports')
             .then(response => response.data)
