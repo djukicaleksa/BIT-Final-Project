@@ -1,28 +1,33 @@
 import React from 'react';
-import {Header} from './Header/Header';
-import {Search} from './Search/Search';
-import {Container, Row, Col} from 'react-materialize';
 import style from './Home.module.css';
-import {servicePeople} from '../../services/servicePeople';
+import { Header } from './Header/Header';
+import { Search } from './Search/Search';
+import { Container, Row, Col } from 'react-materialize';
+import { servicePeople } from '../../services/servicePeople';
+import { Candidate } from '../CandidateList/Candidate'
 
-class Home extends React.Component{
-    constructor(props){
+
+class Home extends React.Component {
+    constructor(props) {
         super(props);
 
-        this.state={
-            candidatesList:[],
-            filteredCandidate:[]
+        this.state = {
+            candidatesList: [],
+            filteredCandidate: [],
+            isFiltered: false
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         servicePeople.getCandidates()
-        .then(data=>{
-            this.setState({candidatesList: data, filteredCandidate: data})
-        })
+            .then(data => {
+                this.setState({ candidatesList: data, filteredCandidate: data })
+            })
     }
 
     searchedCandidates = (textInput) => {
+
+        this.state.isFiltered ? this.setState({ isFiltered: true }) : this.setState({ isFiltered: false })
         const newCandidate = this.state.candidatesList.filter((candidate) => {
             return candidate.name.toLowerCase().includes(textInput.toLowerCase());
         });
@@ -34,10 +39,26 @@ class Home extends React.Component{
     render() {
         return (
             <div>
-            <Header/>
-            <Container>           
-            <Search searchedCandidates={this.searchedCandidates}/>   
-            </Container>
+                <Header />
+                <Container>
+                    <Search searchedCandidates={this.searchedCandidates} />
+
+                    <Row>
+
+
+                        <main className={style.main}>
+                            {this.state.isFiltered ?
+                                (this.state.candidatesList.map((candidate, i) => {
+                                    return <Candidate name={candidate.name} key={candidate.id} />
+                                })) : (this.state.filteredCandidate.map((candidate, i) => {
+                                    return <Candidate name={candidate.name} email={candidate.email} />
+                                }))}
+                        </main>
+
+
+
+                    </Row>
+                </Container>
             </div>
         )
     }
