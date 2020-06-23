@@ -22,7 +22,7 @@ class LoginPage extends React.Component {
         postAdmin(this.state)
             .then(response => {
                 console.log(response);
-                this.props.history.push('/admin');
+                this.props.history.push('/admin/reports');
             })
             .catch(error => {
                 console.log(error);

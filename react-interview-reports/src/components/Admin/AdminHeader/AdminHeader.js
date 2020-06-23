@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, NavItem, Icon } from 'react-materialize';
+import { Link } from 'react-router-dom';
 
 
 const AdminHeader = () => {
@@ -22,12 +23,12 @@ const AdminHeader = () => {
                 preventScrolling: true
             }}
         >
-            <NavItem>
+            <Link to="/admin/reports"><NavItem>
                 Reports
-            </NavItem>
-            <NavItem>
+            </NavItem></Link>
+            <Link to='/admin/reports/createreport'><NavItem>
                 Create Report
-            </NavItem>
+            </NavItem></Link>
 
         </Navbar>
     )
