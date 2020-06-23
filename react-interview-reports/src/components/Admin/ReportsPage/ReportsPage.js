@@ -32,6 +32,25 @@ class ReportPage extends React.Component {
         this.setState(prevState => ({ isOpen: !prevState.isOpen }))
     }
 
+    removeReport = (id) => {
+        console.log(id);
+        let tempArray = this.state.filteredCandidates
+
+        let elementToRemove = this.state.filteredCandidates.filter(report => report.id === id)
+        console.log(elementToRemove);
+        const index = tempArray.indexOf(elementToRemove[0]);
+        console.log(index);
+
+        if (index > -1) {
+            tempArray.splice(index, 1)
+
+        }
+        console.log(this.state.filteredCandidates);
+        this.setState({ filteredCandidates: tempArray })
+
+
+    }
+
 
     render() {
         return (
@@ -62,6 +81,7 @@ class ReportPage extends React.Component {
                         <tbody>
                             {this.state.filteredCandidates.map(can => (
                                 <Report
+                                    id={can.id}
                                     phase={can.phase}
                                     company={can.companyName}
                                     name={can.candidateName}
@@ -69,6 +89,7 @@ class ReportPage extends React.Component {
                                     status={can.status}
                                     openModal={this.openModal}
                                     isOpen={this.state.isOpen}
+                                    removeReport={this.removeReport}
 
                                 />
                             ))}
