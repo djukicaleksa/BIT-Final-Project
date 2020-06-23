@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput, Container, Button } from 'react-materialize';
 import { postAdmin } from '../../../services/serviceAdmin';
+import styles from './LoginPage.module.css';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -8,23 +9,24 @@ class LoginPage extends React.Component {
         this.state = {
             email: '',
             password: '',
-            error: false
+            accessToken: null,
+            wrongUser: false
         }
     }
-    loginData = (event) => {
+    loginCheck = (event) => {
         this.setState({ [event.target.name]: event.target.value })
     }
 
     submitData = () => {
+
         postAdmin(this.state)
             .then(response => {
                 console.log(response);
-                this.props.history.push('/admin')
-                sessionStorage.setItem('validate', true)
+                this.props.history.push('/admin');
             })
             .catch(error => {
-                console.log(error)
-                this.setState({ error: true });
+                console.log(error);
+                this.setState({ wrongUser: true })
             });
     }
 
@@ -33,26 +35,27 @@ class LoginPage extends React.Component {
     render() {
         return (
             <Container>
-                <h1>Login</h1>
-                <TextInput
-                    onChange={this.loginData}
-                    email
-                    id="TextInput-4"
-                    label="Email"
-                    name="email"
-                    validate
-                />
+                <div className={styles.loginForm}>
+                    <div><i className={`fa fa-user ${styles.user}`}>
+                        {this.state.wrongUser ? <span className={styles.wrong}> wrong email or password</span> : ""}
+                    </i>
+                    </div>
+                    <TextInput
+                        onChange={this.loginCheck}
+                        email
+                        label="Email"
+                        name="email"
+                        validate
+                    />
 
-                <TextInput
-                    onChange={this.loginData}
-                    id="TextInput-4"
-                    label="Password"
-                    name="password"
-                    password
-                />
-                {this.state.error ? <div>email or password is not correct</div> : ""}
-                <Button onClick={this.submitData}>Login</Button>
-
+                    <TextInput
+                        onChange={this.loginCheck}
+                        label="Password"
+                        name="password"
+                        password
+                    />
+                    <Button onClick={this.submitData}>Login</Button>
+                </div>
             </Container >
         )
     }

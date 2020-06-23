@@ -1,7 +1,7 @@
 import React from 'react';
 import { servicePeople } from '../../../services/servicePeople';
 import { AdminHeader } from '../AdminHeader/AdminHeader';
-import { Table } from 'react-materialize';
+import { Table, Container } from 'react-materialize';
 import { Report } from './Report';
 
 class ReportPage extends React.Component {
@@ -20,39 +20,37 @@ class ReportPage extends React.Component {
             <div>
                 <AdminHeader />
 
-
-                <Table>
-                    <thead>
-                        <tr>
-                            <th data-field="company">
-                                Company
+                <Container>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th data-field="company">
+                                    Company
                             </th>
-                            <th data-field="name">
-                                Candidate
+                                <th data-field="name">
+                                    Candidate
                             </th>
-                            <th data-field="date">
-                                Interview Date
+                                <th data-field="date">
+                                    Interview Date
                             </th>
-                            <th data-field="status">
-                                Status
+                                <th data-field="status">
+                                    Status
                             </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.candidates.map(can => (
-                            <Report
-                                company={can.companyName}
-                                name={can.candidateName}
-                                date={can.interviewDate}
-                                status={can.status}
-                            />
-                        ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.candidates.map(can => (
+                                <Report
+                                    company={can.companyName}
+                                    name={can.candidateName}
+                                    date={can.interviewDate}
+                                    status={can.status}
+                                />
+                            ))}
 
-                    </tbody>
-                </Table>
-
-
-
+                        </tbody>
+                    </Table>
+                </Container>
             </div>
         )
     }
