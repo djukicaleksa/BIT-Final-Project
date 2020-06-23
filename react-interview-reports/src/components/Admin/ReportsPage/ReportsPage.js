@@ -43,15 +43,16 @@ class ReportPage extends React.Component {
                         <tr>
                             <th data-field="company">
                                 Company
+
                             </th>
-                            <th data-field="name">
-                                Candidate
+                                <th data-field="name">
+                                    Candidate
                             </th>
-                            <th data-field="date">
-                                Interview Date
+                                <th data-field="date">
+                                    Interview Date
                             </th>
-                            <th data-field="status">
-                                Status
+                                <th data-field="status">
+                                    Status
                             </th>
                         </tr>
                     </thead>
@@ -64,12 +65,9 @@ class ReportPage extends React.Component {
                                 status={can.status}
                             />
                         ))}
-
                     </tbody>
                 </Table>
                 </Container>
-
-
             </div>
         )
     }

@@ -16,6 +16,12 @@ const Report = ({ company, name, date, status }) => {
             <td>
                 {status}
             </td>
+            <td>
+                <i className="fa fa-eye"></i>
+            </td>
+            <td>
+                <i className="fa fa-close"></i>
+            </td>
         </tr>
     )
 }
