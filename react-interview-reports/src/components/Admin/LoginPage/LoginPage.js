@@ -9,7 +9,6 @@ class LoginPage extends React.Component {
         this.state = {
             email: '',
             password: '',
-            accessToken: null,
             wrongUser: false
         }
     }
@@ -22,7 +21,8 @@ class LoginPage extends React.Component {
         postAdmin(this.state)
             .then(response => {
                 console.log(response);
-                this.props.history.push('/admin/reports');
+                this.props.history.push('/admin/reports')
+                sessionStorage.setItem('accessToken', response.data.accessToken)
             })
             .catch(error => {
                 console.log(error);
