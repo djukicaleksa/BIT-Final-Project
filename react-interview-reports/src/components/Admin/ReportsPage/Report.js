@@ -1,8 +1,13 @@
 import React from 'react';
+import { DetailedReport } from '../../../shared/DetailedReport/DetailedReport'
 
-const Report = ({ company, name, date, status }) => {
+const Report = ({ company, name, date, status, isOpen, openModal, phase, removeReport, id }) => {
+    const report = { companyName: company, candidateName: name, interviewDate: date, status, phase }
+    console.log(report);
+
 
     return (
+
         <tr>
             <td>
                 {company}
@@ -17,13 +22,15 @@ const Report = ({ company, name, date, status }) => {
                 {status}
             </td>
             <td>
-                <i className="fa fa-eye"></i>
+                <i className="fa fa-eye" onClick={() => { openModal() }}></i>
             </td>
             <td>
-                <i className="fa fa-close"></i>
+                <i className="fa fa-close" data-id={id} onClick={() => { removeReport(id) }}></i>
             </td>
+            <DetailedReport isOpen={isOpen} openModal={openModal} report={report}></DetailedReport>
         </tr>
+
     )
 }
 
-export { Report };
+export { Report }
