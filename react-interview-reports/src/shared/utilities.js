@@ -15,5 +15,6 @@ const search = (data, filters, textInput) => (
     data.filter(item => filters.some(filter => item[filter].toLowerCase().includes(textInput.toLowerCase())))
 )
 
+
 export {convertDate, search}
 

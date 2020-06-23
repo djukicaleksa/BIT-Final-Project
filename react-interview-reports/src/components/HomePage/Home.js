@@ -22,7 +22,9 @@ class Home extends React.Component {
     componentDidMount() {
         servicePeople.getCandidates()
             .then(data => {
-                this.setState({ candidatesList: data, filteredCandidate: data })
+                console.log(data);
+                
+                 return this.setState({ candidatesList: data, filteredCandidate: data })
             })
     }
 

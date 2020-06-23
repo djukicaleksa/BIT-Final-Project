@@ -59,6 +59,7 @@ class ReportPage extends React.Component {
                     <tbody>
                         {this.state.filteredCandidates.map(can => (
                             <Report
+                                key={can.id}
                                 company={can.companyName}
                                 name={can.candidateName}
                                 date={can.interviewDate}
