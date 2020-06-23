@@ -76,6 +76,7 @@ class ReportPage extends React.Component {
                                 <th data-field="status">
                                     Status
                             </th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -95,6 +96,7 @@ class ReportPage extends React.Component {
                             ))}
                         </tbody>
                     </Table>
+
                 </Container>
             </div>
         )
