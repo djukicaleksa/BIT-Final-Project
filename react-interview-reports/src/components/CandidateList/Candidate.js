@@ -19,7 +19,7 @@ export const Candidate = ({ name, email, key, id }) => {
                 closeIcon={<Icon>close</Icon>}
                 header={<CardTitle image='./userImg.jpg' reveal waves="light" />}
                 reveal
-                revealIcon={<Icon></Icon>}
+                revealIcon={<Icon>search</Icon>}
                 title={name}
 
             >
