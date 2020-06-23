@@ -6,6 +6,8 @@ import { Report } from './Report';
 import { ReportsSearch } from './Search/Search';
 import { search } from '../../../shared/utilities';
 import styles from './ReportsPage.module.css';
+import { StorageService } from '../../../services/storageService';
+import { Authentication } from '../../../services/AuthService';
 
 
 class ReportPage extends React.Component {
@@ -27,6 +29,7 @@ class ReportPage extends React.Component {
         const results = search(this.state.candidates, ['companyName', 'candidateName'], textInput)
         this.setState({ filteredCandidates: results })
     }
+
 
     openModal = () => {
         this.setState(prevState => ({ isOpen: !prevState.isOpen }))
@@ -53,6 +56,10 @@ class ReportPage extends React.Component {
 
 
     render() {
+        const access = Authentication.isLogon()
+        if (!access) {
+            this.props.history.push('/admin')
+        }
         return (
             <div>
                 <AdminHeader />
