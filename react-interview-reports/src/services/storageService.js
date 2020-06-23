@@ -1,10 +1,14 @@
-class StorageService {
-    setSession(key, value) {
-        sessionStorage.setItem(key, value)
+class StorageServiceImp {
+    set(key, value) {
+        const valueToStore = JSON.stringify(value)
+        sessionStorage.setItem(key, valueToStore);
+
+        return valueToStore;
     }
-    getSession(key) {
-        return sessionStorage.getItem(key)
+
+    get(key) {
+        return JSON.parse(sessionStorage.getItem(key))
     }
 }
 
-export const storageService = new StorageService();
+export const StorageService = new StorageServiceImp();

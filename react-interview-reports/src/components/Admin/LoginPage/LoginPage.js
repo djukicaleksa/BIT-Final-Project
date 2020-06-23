@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, Container, Button } from 'react-materialize';
 import { postAdmin } from '../../../services/serviceAdmin';
 import styles from './LoginPage.module.css';
-import { storageService } from '../../../services/storageService';
+import { StorageService } from '../../../services/storageService';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -22,8 +22,8 @@ class LoginPage extends React.Component {
         postAdmin(this.state)
             .then(response => {
                 console.log(response);
+                StorageService.set('accessToken', response.data.accessToken)
                 this.props.history.push('/admin/reports')
-                storageService.setSession('accessToken', response.data.accessToken)
             })
             .catch(error => {
                 console.log(error);

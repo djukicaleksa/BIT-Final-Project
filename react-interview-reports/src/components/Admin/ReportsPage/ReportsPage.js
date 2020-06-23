@@ -6,7 +6,8 @@ import { Report } from './Report';
 import { ReportsSearch } from './Search/Search';
 import { search } from '../../../shared/utilities';
 import styles from './ReportsPage.module.css';
-import {storageService} from '../../../services/storageService';
+import {StorageService} from '../../../services/storageService';
+import {Authentication} from '../../../services/AuthService';
 
 
 class ReportPage extends React.Component {
@@ -32,7 +33,7 @@ class ReportPage extends React.Component {
 
 
     render() {
-        const access = storageService.getSession("accessToken");
+        const access = Authentication.isLogon()
         if (!access) {
             this.props.history.push('/admin')
         }

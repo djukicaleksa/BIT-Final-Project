@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, NavItem, Icon, } from 'react-materialize';
+import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 
 
@@ -23,6 +24,9 @@ const Header = () => {
         preventScrolling: true
       }}
     >
+      <Link to='/admin'><NavItem>
+        Login
+  </NavItem></Link>
       <NavItem>
         Candidates
   </NavItem>
