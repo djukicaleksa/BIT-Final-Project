@@ -2,6 +2,7 @@ import React from 'react';
 import { TextInput, Container, Button } from 'react-materialize';
 import { postAdmin } from '../../../services/serviceAdmin';
 import styles from './LoginPage.module.css';
+import { storageService } from '../../../services/storageService';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class LoginPage extends React.Component {
             .then(response => {
                 console.log(response);
                 this.props.history.push('/admin/reports')
-                sessionStorage.setItem('accessToken', response.data.accessToken)
+                storageService.setSession('accessToken', response.data.accessToken)
             })
             .catch(error => {
                 console.log(error);
