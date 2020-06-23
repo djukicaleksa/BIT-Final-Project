@@ -1,26 +1,43 @@
 import React from 'react';
 import { servicePeople } from '../../../services/servicePeople';
 import { AdminHeader } from '../AdminHeader/AdminHeader';
-import { Table } from 'react-materialize';
+import { Table, Container } from 'react-materialize';
 import { Report } from './Report';
+import {ReportsSearch} from './Search/Search';
+import {search} from '../../../shared/utilities';
+import styles from './ReportsPage.module.css';
+
 
 class ReportPage extends React.Component {
     constructor() {
         super();
         this.state = {
-            candidates: []
+            candidates: [],
+            filteredCandidates:[]
         }
     }
     componentDidMount() {
         servicePeople.getReports()
-            .then(reports => this.setState({ candidates: reports }))
+            .then(reports => this.setState({ candidates: reports, filteredCandidates: reports }))
     }
+
+
+      searchedReports=(textInput)=>{
+       const results = search(this.state.candidates, ['companyName', 'candidateName'], textInput)
+        this.setState({filteredCandidates: results})
+     }
+            
+
+
+    
     render() {
         return (
             <div>
                 <AdminHeader />
-
-
+                <Container className={styles.search}>
+                <ReportsSearch searchedReports={this.searchedReports} />
+                </Container>
+                <Container>
                 <Table>
                     <thead>
                         <tr>
@@ -39,7 +56,7 @@ class ReportPage extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.candidates.map(can => (
+                        {this.state.filteredCandidates.map(can => (
                             <Report
                                 company={can.companyName}
                                 name={can.candidateName}
@@ -50,7 +67,7 @@ class ReportPage extends React.Component {
 
                     </tbody>
                 </Table>
-
+                </Container>
 
 
             </div>

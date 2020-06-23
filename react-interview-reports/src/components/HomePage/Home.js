@@ -2,10 +2,10 @@ import React from 'react';
 import style from './Home.module.css';
 import { Header } from './Header/Header';
 import { Search } from './Search/Search';
-import { Container, Row, Col } from 'react-materialize';
+import { Container, Row, } from 'react-materialize';
 import { servicePeople } from '../../services/servicePeople';
 import { Candidate } from '../CandidateList/Candidate'
-import { ReportList } from '../InfoPage/ReportList/ReportList';
+import {search} from '../../shared/utilities';
 
 
 class Home extends React.Component {
@@ -26,19 +26,12 @@ class Home extends React.Component {
             })
     }
 
-    searchedCandidates = (textInput) => {
 
-        this.setState((previousState) => {
-            return { isFiltered: !previousState.isFiltered }
-        })
-        const newCandidate = this.state.candidatesList.filter((candidate) => {
-            return candidate.name.toLowerCase().includes(textInput.toLowerCase());
-        });
-        this.setState({
-            filteredCandidate: newCandidate,
-        });
-    };
-
+    searchedCandidates =(textInput)=>{    
+     const res =   search(this.state.candidatesList, ['name'], textInput)
+        this.setState({filteredCandidate: res})
+}
+   
     render() {
         return (
             <div>
@@ -47,8 +40,6 @@ class Home extends React.Component {
                     <Search searchedCandidates={this.searchedCandidates} />
 
                     <Row>
-
-
                         <main className={style.main}>
                             {this.state.filteredCandidate.map((candidate, i) => {
                                 return <Candidate name={candidate.name} email={candidate.email} id={candidate.id} />
