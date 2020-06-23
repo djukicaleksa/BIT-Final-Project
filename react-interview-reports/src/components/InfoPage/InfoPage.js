@@ -40,6 +40,7 @@ class InfoPage extends React.Component{
                 education={this.state.candidates.education}
                 birthday={this.state.candidates.birthday}
             />
+            <h4>Reports</h4>
             <ReportList reports={this.state.reports} candidateId={this.props.match.params.id}></ReportList>
            </Container>
             </div>
