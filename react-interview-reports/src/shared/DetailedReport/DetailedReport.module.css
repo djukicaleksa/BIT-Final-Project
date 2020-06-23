@@ -1,3 +1,17 @@
 .reportText{
     color: black;
+    font-size: 2em;
+    
+    
+    
+}
+.detailsWrapper {
+    display: flex;
+    justify-content: space-between;
+   
+}
+.descriptionWrapper {
+    padding-left: 5%;
+    word-wrap: break-word !important;
+    
 }
