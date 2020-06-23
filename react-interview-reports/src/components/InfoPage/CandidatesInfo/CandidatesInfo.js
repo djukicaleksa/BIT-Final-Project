@@ -1,28 +1,36 @@
 import React from 'react';
-import {Row, Col} from 'react-materialize';
 import styles from './CandidatesInfo.module.css';
+import {convertDate} from '../../../shared/utilities';
 
 const CandidatesInfo = ({ name, email, birthday, education}) =>{
-    return(
       
-          <Row>
-              <Col lg={3} offset="m1">
-                    <img className={styles.img} src="../userImg.jpg"/>
-              </Col>
-              <Col lg={4}>
-                <p>Name:</p>
-                <h5 className={styles.name}>{name}</h5>
-                <p>Email:</p>
-                 <h5>{email}</h5>
-              </Col>
-              <Col lg={4} >
-                    <p>Date of Birth:</p>
-                    <h5 className={styles.date}>{birthday}</h5>
-                    <p>Education:</p>
-                    <h5>{education}</h5>
-              </Col>
-          </Row>
+    return(
 
+      <div className={styles.info}>
+            <div>
+      <img className={styles.img} src="../userImg.jpg"/>
+      </div>
+            <table className={styles.tableInfo}>
+                   <thead>
+                    <tr>
+                        <th>Name:</th>
+                        <th>Date of Birth:</th>
+                    </tr>
+                </thead>
+                <tr>
+                   <td className={styles.tdd}>{name}</td>
+                   <td className={styles.tdd}>{convertDate(birthday)}</td>
+                </tr>
+                <tr>
+                      <th>Email:</th>
+                      <th>Education:</th>
+                </tr>
+                <tr>
+                   <td className={styles.tdd}>{email}</td>
+                   <td className={styles.tdd}>{education}</td>
+                </tr>
+            </table>
+            </div>
     )
 }
 

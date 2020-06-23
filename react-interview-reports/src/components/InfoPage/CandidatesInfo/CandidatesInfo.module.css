@@ -1,9 +1,20 @@
-.date{
-    margin-bottom: 60px;
+.date {
+	margin-bottom: 60px;
 }
-.name{
-    margin-bottom: 60px;
+.name {
+	margin-bottom: 60px;
 }
-.img{
-width: 250px;
+.img {
+	width: 250px;
+	margin-right: 50px;
+}
+.info {
+	display: flex;
+	margin-bottom: 80px;
+}
+.tableInfo {
+	border-collapse: separate;
+}
+.tdd {
+	font-size: 25px;
 }

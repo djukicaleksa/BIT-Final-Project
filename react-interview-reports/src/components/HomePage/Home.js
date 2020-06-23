@@ -28,9 +28,9 @@ class Home extends React.Component {
 
     searchedCandidates = (textInput) => {
 
-        // this.setState((previousState) => {
-        //     return { isFiltered: !previousState.isFiltered }
-        // })
+        this.setState((previousState) => {
+            return { isFiltered: !previousState.isFiltered }
+        })
         const newCandidate = this.state.candidatesList.filter((candidate) => {
             return candidate.name.toLowerCase().includes(textInput.toLowerCase());
         });

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {convertDate} from '../../../shared/utilities';
 export const ReportList = (props) => {
 
     let thisCandidatesReports = props.reports.filter(report => report.candidateId === Number(props.candidateId))
@@ -20,14 +20,12 @@ export const ReportList = (props) => {
 
                         return (<tr>
                             <td>{report.companyName}</td>
-                            <td>{report.interviewDate}</td>
+                            <td>{convertDate(report.interviewDate)}</td>
                             <td>{report.status}</td>
 
                         </tr>)
                     })}
                 </tbody>
-
-
 
             </table>
         </div>
