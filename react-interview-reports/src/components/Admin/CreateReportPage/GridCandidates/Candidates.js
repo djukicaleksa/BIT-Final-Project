@@ -11,7 +11,7 @@ const Candidates = (props) => {
       s={12}
     >
       <Collection onClick={() => { props.getData(props.candidate.id, props.candidate.name) }}>
-        <CollectionItem className="avatar">
+        <CollectionItem className={`avatar ${styles.collection}`}>
           <img
             alt=""
             className="circle"

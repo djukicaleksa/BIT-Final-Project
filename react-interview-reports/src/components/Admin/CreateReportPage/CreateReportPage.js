@@ -18,7 +18,7 @@ class CreateReportPage extends React.Component {
             filteredCandid: [],
             companyList: [],
             wizardStep: 1,
-            newReportData: []
+            newReportData: { name: null, candidateId: null, candidateName: null, companyId: null, companyName: null, interviewDate: null, phase: null, status: null, note: null }
         }
     }
     componentDidMount() {
@@ -65,7 +65,20 @@ class CreateReportPage extends React.Component {
 
     getCandidateData = (id, name) => {
         console.log(id, name);
+        let someReport = { ...this.state.newReportData }
+        someReport.name = name;
+        someReport.candidateId = id
+        this.setState({ newReportData: someReport })
 
+
+    }
+
+    getCompanyData = (id, name) => {
+        console.log(id, name);
+        let someReport = { ...this.state.newReportData }
+        someReport.companyName = name;
+        someReport.companyId = id;
+        this.setState({ newReportData: someReport })
     }
 
     render() {
@@ -82,7 +95,11 @@ class CreateReportPage extends React.Component {
                         </Col>
                         <Col lg={8}>
                             <Row>
-                                <GridCandidates candidates={this.state.filteredCandid} getData={this.getCandidateData} />
+                                {this.state.wizardStep === 1 && <GridCandidates candidates={this.state.filteredCandid} getData={this.getCandidateData} />}
+                                {this.state.wizardStep === 2 && <CompanySelector companyList={this.state.companyList} getData={this.getCompanyData} />}
+                                {this.state.wizardStep === 3 && <ReportDetails />}
+
+
                             </Row>
                             <Row className={styles.btndiv} >
                                 <Col lg={4}><Button onClick={this.previousStep} className={styles.btn} >Previous</Button></Col>
@@ -93,7 +110,6 @@ class CreateReportPage extends React.Component {
                         </Col>
                     </Row>
 
-                    <ReportDetails />
                 </Container>
             </div>
         )
