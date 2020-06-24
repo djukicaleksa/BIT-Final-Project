@@ -59,7 +59,6 @@ class CreateReportPage extends React.Component {
                     </Row>
                     <ReportDetails/>
                     </Container>
-                    
             </div>
         )
     }
