@@ -3,11 +3,16 @@
 	padding-bottom: 20px;
 }
 .btn {
-	margin-top: 80px;
+	margin-top: 10vh;
 }
 .btndiv {
+	display: flex;
+	justify-content: space-between;
+}
+.btnEnd{
 	text-align: end;
 }
+
 .fullWidth {
 	max-width: 100%;
 	max-width: initial;
