@@ -10,7 +10,7 @@ import { convertDate } from '../utilities'
 export const DetailedReport = (props) => {
     return (<Modal
         isOpen={props.isOpen}
-
+        ariaHideApp={false}
         onRequestClose={() => { props.openModal() }}
         style={customStyles}
         contentLabel="Example Modal"
@@ -29,12 +29,7 @@ export const DetailedReport = (props) => {
                     <label className={style.textLabel}>Status :<p className={style.reportText}>{props.report.status}</p></label>
                 </div>
                 <div className={style.descriptionWrapper}>
-                    <label className={style.description}>Description :<p className={style.reportText}>Nulla lacinia nibh erat, et aliquam eros bibendum eu. 
-                    Nam pellentesque lobortis placerat. Cras nec elit ipsum. Ut venenatis turpis quis tortor efficitur sagittis. Donec ac lorem dictum, 
-                    posuere nulla vel, egestas mi. Sed placerat, odio eget vestibulum malesuada, lorem orci ultricies ex, a congue nisl felis non est. 
-                    Cras ac sollicitudin libero. Sed volutpat condimentum velit et condimentum. Suspendisse convallis justo eu mi ornare, in posuere eros
-                     malesuada. Sed egestas accumsan sagittis. Maecenas eget dapibus tortor, id rutrum magna. Nunc sed porttitor massa. Suspendisse nec 
-                     sodales neque, id varius mi.</p></label>
+                    <label className={style.description}>Description :<p className={style.reportText}>{props.report.note}.</p></label>
                 </div>
             </div>
         </div>

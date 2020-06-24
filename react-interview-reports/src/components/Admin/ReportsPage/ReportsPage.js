@@ -8,6 +8,7 @@ import { search } from '../../../shared/utilities';
 import styles from './ReportsPage.module.css';
 import { StorageService } from '../../../services/storageService';
 import { Authentication } from '../../../services/AuthService';
+import { ErrorBoundary } from '../../../shared/ErrorBoundary';
 
 
 class ReportPage extends React.Component {
@@ -87,19 +88,22 @@ class ReportPage extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.filteredCandidates.map(can => (
-                                <Report
-                                    id={can.id}
-                                    phase={can.phase}
-                                    company={can.companyName}
-                                    name={can.candidateName}
-                                    date={can.interviewDate}
-                                    status={can.status}
-                                    openModal={this.openModal}
-                                    isOpen={this.state.isOpen}
-                                    removeReport={this.removeReport}
+                            {this.state.filteredCandidates.map((can, i) => (
+                                <ErrorBoundary>
+                                    <Report
+                                        key={i}
+                                        id={can.id}
+                                        phase={can.phase}
+                                        company={can.companyName}
+                                        name={can.candidateName}
+                                        date={can.interviewDate}
+                                        status={can.status}
+                                        openModal={this.openModal}
+                                        isOpen={this.state.isOpen}
+                                        removeReport={this.removeReport}
+                                        note={can.note}
 
-                                />
+                                    /></ErrorBoundary>
                             ))}
                         </tbody>
                     </Table>

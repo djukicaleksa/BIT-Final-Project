@@ -8,35 +8,40 @@ import {NavList} from './NavList/NavList';
 import {GridCandidates} from './GridCandidates/GridCandidates';
 import styles from './CreateReportPage.module.css'
 import {ReportDetails} from './ReportDetails/ReportDetails';
-import {Link} from 'react-router-dom';
+
 
 class CreateReportPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            candidates:[],
-            filteredCandid:[]
+            candidates: [],
+            filteredCandid: [],
+            companyList: []
         }
     }
-componentDidMount(){
-    servicePeople.getCandidates()
-    .then(data=>{
-        this.setState({candidates: data, filteredCandid: data})
-    })
-}
+    componentDidMount() {
+        servicePeople.getCandidates()
+            .then(data => {
+                this.setState({ candidates: data, filteredCandid: data })
+            })
+        servicePeople.getCompanies()
+            .then(companyList => {
+                this.setState({ companyList })
+            })
+    }
 
-searchedCandid=(textInput)=>{
-  const res =  search(this.state.candidates, ["name"], textInput)
-    this.setState({filteredCandid: res})
-}
+    searchedCandid = (textInput) => {
+        const res = search(this.state.candidates, ["name"], textInput)
+        this.setState({ filteredCandid: res })
+    }
 
 
     render() {
         return (
             <div>
-                <AdminHeader/>
+                <AdminHeader />
                 <Container>
-                <SearchReportPage searchedCandid={this.searchedCandid}/>
+                    <SearchReportPage searchedCandid={this.searchedCandid} />
                 </Container>
                 <Container className={styles.fullWidth}>
                     <Row className={styles.flex}>
@@ -53,9 +58,6 @@ searchedCandid=(textInput)=>{
                       </Col>
                     </Row>
                     </Container>
-                   
-                   
-                   
             </div>
         )
     }
