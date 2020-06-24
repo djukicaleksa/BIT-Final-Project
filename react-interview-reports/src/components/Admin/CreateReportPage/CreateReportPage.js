@@ -8,6 +8,7 @@ import {NavList} from './NavList/NavList';
 import {GridCandidates} from './GridCandidates/GridCandidates';
 import styles from './CreateReportPage.module.css'
 import {ReportDetails} from './ReportDetails/ReportDetails';
+import { Authentication } from '../../../services/AuthService';
 
 
 class CreateReportPage extends React.Component {
@@ -37,6 +38,10 @@ class CreateReportPage extends React.Component {
 
 
     render() {
+        const access = Authentication.isLogon()
+        if (!access) {
+            this.props.history.push('/admin')
+        }
         return (
             <div>
                 <AdminHeader />

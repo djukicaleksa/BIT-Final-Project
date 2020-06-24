@@ -21,8 +21,11 @@ class ReportPage extends React.Component {
         }
     }
     componentDidMount() {
+        const deletedReports=StorageService.get("reports")
         servicePeople.getReports()
-            .then(reports => this.setState({ candidates: reports, filteredCandidates: reports }))
+            .then(reports => this.setState({ candidates: reports, filteredCandidates: deletedReports ? deletedReports : reports }))
+            
+            
     }
 
 
@@ -51,7 +54,7 @@ class ReportPage extends React.Component {
         }
         console.log(this.state.filteredCandidates);
         this.setState({ filteredCandidates: tempArray })
-
+        StorageService.set('reports', tempArray)
 
     }
 
