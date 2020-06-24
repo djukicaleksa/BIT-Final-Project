@@ -1,8 +1,8 @@
 import React from 'react';
 import { DetailedReport } from '../../../shared/DetailedReport/DetailedReport'
 
-const Report = ({ company, name, date, status, isOpen, openModal, phase, removeReport, id }) => {
-    const report = { companyName: company, candidateName: name, interviewDate: date, status, phase }
+const Report = ({ company, name, date, status, isOpen, openModal, phase, removeReport, id, note }) => {
+    const report = { companyName: company, candidateName: name, interviewDate: date, status, phase, note }
     console.log(report);
 
 
