@@ -1,16 +1,105 @@
 import React from 'react';
-import {Select, Row, Col} from 'react-materialize';
+import {Select, Row, Col, DatePicker, Textarea} from 'react-materialize';
 const ReportDetails = () =>{
 return(
+    <div>
     <Row>
         
            <Col lg={4}>
-        <input type="date" label="date"></input>
+           <DatePicker
+  id="DatePicker-5"
+  label= "Interview Date:"
+  options={{
+    autoClose: false,
+    container: null,
+    defaultDate: null,
+    disableDayFn: null,
+    disableWeekends: false,
+    events: [],
+    firstDay: 0,
+    format: 'mmm dd, yyyy',
+    i18n: {
+      cancel: 'Cancel',
+      clear: 'Clear',
+      done: 'Ok',
+      months: [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ],
+      monthsShort: [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
+      ],
+      nextMonth: '›',
+      previousMonth: '‹',
+      weekdays: [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday'
+      ],
+      weekdaysAbbrev: [
+        'S',
+        'M',
+        'T',
+        'W',
+        'T',
+        'F',
+        'S'
+      ],
+      weekdaysShort: [
+        'Sun',
+        'Mon',
+        'Tue',
+        'Wed',
+        'Thu',
+        'Fri',
+        'Sat'
+      ]
+    },
+    isRTL: false,
+    maxDate: null,
+    minDate: null,
+    onClose: null,
+    onDraw: null,
+    onOpen: null,
+    onSelect: null,
+    parse: null,
+    setDefaultDate: false,
+    showClearBtn: false,
+    showDaysInNextAndPreviousMonths: false,
+    showMonthAfterYear: false,
+    yearRange: 10
+  }}
+/>
         </Col>
         <Col lg={4}>
     <Select
   id="Select-9"
-  label="Phase"
+  label="Phase:"
   multiple={false}
   options={{
     classes: '',
@@ -48,7 +137,7 @@ return(
 <Col lg={4}>
     <Select
     id="Select-9"
-    label="Status"
+    label="Status:"
     multiple={false}
     options={{
       classes: '',
@@ -77,7 +166,17 @@ return(
     </option>
   </Select>
   </Col>
+  
   </Row>
+  <Row>
+  <Col lg={12}>
+  <Textarea
+  id="Textarea-12"
+  label="Write something here..."
+/>
+</Col>
+</Row>
+</div>
 )
 }
 

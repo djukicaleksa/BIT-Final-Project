@@ -31,7 +31,7 @@ class CreateReportPage extends React.Component {
     }
 
     searchedCandid = (textInput) => {
-        const res = search(this.state.candidates, ["name"], textInput)
+        const res = search(this.state.candidates, ["name", "company"], textInput)
         this.setState({ filteredCandid: res })
     }
 
@@ -57,7 +57,9 @@ class CreateReportPage extends React.Component {
                       </Row>
                       </Col>
                     </Row>
+                    <ReportDetails/>
                     </Container>
+                    
             </div>
         )
     }
