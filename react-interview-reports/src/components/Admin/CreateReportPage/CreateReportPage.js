@@ -2,11 +2,13 @@ import React from 'react';
 import {AdminHeader} from '../AdminHeader/AdminHeader';
 import{search} from '../../../shared/utilities';
 import {SearchReportPage} from './SearchReportPage/SearchReportPage';
-import {Container, Row, Col} from 'react-materialize';
+import {Container, Row, Col, Button} from 'react-materialize';
 import {servicePeople} from '../../../services/servicePeople';
 import {NavList} from './NavList/NavList';
 import {GridCandidates} from './GridCandidates/GridCandidates';
 import styles from './CreateReportPage.module.css'
+import {ReportDetails} from './ReportDetails/ReportDetails';
+import {Link} from 'react-router-dom';
 
 class CreateReportPage extends React.Component {
     constructor(props) {
@@ -29,7 +31,6 @@ searchedCandid=(textInput)=>{
 }
 
 
-
     render() {
         return (
             <div>
@@ -37,21 +38,24 @@ searchedCandid=(textInput)=>{
                 <Container>
                 <SearchReportPage searchedCandid={this.searchedCandid}/>
                 </Container>
-                <Container >
-                    <Row>
-                        <Container className={styles.main}>
+                <Container className={styles.fullWidth}>
+                    <Row className={styles.flex}>
+                        <Col lg={4}>
                     <NavList />
-                    </Container>
-                      <GridCandidates candidates={this.state.filteredCandid}/>
-                    </Row>
-                    </Container>
-                    <Container>
+                    </Col>
+                    <Col lg={8}>
                         <Row>
-                  
+                      <GridCandidates candidates={this.state.filteredCandid}/>
+                      <div className={styles.btndiv} >
+                     <Button className={styles.btn} >Next</Button>
+                      </div>
+                      </Row>
+                      </Col>
                     </Row>
                     </Container>
                    
-                
+                   
+                   
             </div>
         )
     }

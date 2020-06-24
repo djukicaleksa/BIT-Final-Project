@@ -1,12 +1,12 @@
 import React from 'react';
 import {Collection, CollectionItem, Icon, Col, Row} from 'react-materialize';
-
+import styles from './Candidates.module.css'
 
 
 const Candidates =({name, email})=>{
     return(
       
-  <Col
+  <Col className={styles.pad}
     m={6}
     s={12}
   >

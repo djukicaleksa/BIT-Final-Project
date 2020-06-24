@@ -3,7 +3,7 @@ import styles from './NavList.module.css';
 
 const NavList = () =>{
     return(
-        <div>
+        <div className={styles.navList}>
         <ul>
   <li><h5><span className={styles.number}>1</span> Select Candidate</h5></li>
   <li><h5><span className={styles.number}>2</span> Select Company</h5></li>
