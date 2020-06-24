@@ -1,13 +1,14 @@
 import React from 'react';
-import { AdminHeader } from '../AdminHeader/AdminHeader';
-import { search } from '../../../shared/utilities';
-import { SearchReportPage } from './SearchReportPage/SearchReportPage';
-import { Container, Row, Col } from 'react-materialize';
-import { servicePeople } from '../../../services/servicePeople';
-import { NavList } from './NavList/NavList';
-import { GridCandidates } from './GridCandidates/GridCandidates';
+import {AdminHeader} from '../AdminHeader/AdminHeader';
+import{search} from '../../../shared/utilities';
+import {SearchReportPage} from './SearchReportPage/SearchReportPage';
+import {Container, Row, Col, Button} from 'react-materialize';
+import {servicePeople} from '../../../services/servicePeople';
+import {NavList} from './NavList/NavList';
+import {GridCandidates} from './GridCandidates/GridCandidates';
 import styles from './CreateReportPage.module.css'
-import { CompanySelector } from './CompanySelector/CompanySelector'
+import {ReportDetails} from './ReportDetails/ReportDetails';
+
 
 class CreateReportPage extends React.Component {
     constructor(props) {
@@ -35,7 +36,6 @@ class CreateReportPage extends React.Component {
     }
 
 
-
     render() {
         return (
             <div>
@@ -43,22 +43,21 @@ class CreateReportPage extends React.Component {
                 <Container>
                     <SearchReportPage searchedCandid={this.searchedCandid} />
                 </Container>
-                <Container >
-                    <Row>
-                        <Container className={styles.main}>
-                            <NavList />
-                        </Container>
-                        <GridCandidates candidates={this.state.filteredCandid} />
+                <Container className={styles.fullWidth}>
+                    <Row className={styles.flex}>
+                        <Col lg={4}>
+                    <NavList />
+                    </Col>
+                    <Col lg={8}>
+                        <Row>
+                      <GridCandidates candidates={this.state.filteredCandid}/>
+                      <div className={styles.btndiv} >
+                     <Button className={styles.btn} >Next</Button>
+                      </div>
+                      </Row>
+                      </Col>
                     </Row>
-                </Container>
-                <Container>
-                    <Row>
-
-                    </Row>
-
-                </Container>
-
-
+                    </Container>
             </div>
         )
     }

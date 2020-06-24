@@ -1,5 +1,17 @@
-.main{
-    text-align: center !important;
-    padding-bottom: 20px;
+.main {
+	text-align: center !important;
+	padding-bottom: 20px;
 }
-
+.btn {
+	margin-top: 80px;
+}
+.btndiv {
+	text-align: end;
+}
+.fullWidth {
+	max-width: 100%;
+	max-width: initial;
+}
+.flex {
+	display: flex;
+}
