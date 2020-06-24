@@ -1,16 +1,17 @@
 import React from 'react';
-import {Candidates} from './Candidates';
+import { Candidates } from './Candidates';
 
-const GridCandidates =({candidates})=>{
-    return(
-        candidates.map(can=>(
+const GridCandidates = ({ candidates, getData }) => {
+    return (
+        candidates.map(can => (
             <Candidates
-             name={can.name}
-             email={can.email}
-             />
+                candidate={can}
+                getData={getData}
+
+            />
         ))
-        
+
     )
 }
 
-export {GridCandidates}
+export { GridCandidates }

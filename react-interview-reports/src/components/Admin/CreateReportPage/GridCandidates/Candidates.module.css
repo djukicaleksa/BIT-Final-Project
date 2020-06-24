@@ -1,3 +1,6 @@
 .pad {
 	padding-right: 0px !important;
 }
+.collection:hover{
+	background-color: blanchedalmond;
+}

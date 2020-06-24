@@ -6,8 +6,7 @@ import { Report } from './Report';
 import { ReportsSearch } from './Search/Search';
 import { search } from '../../../shared/utilities';
 import styles from './ReportsPage.module.css';
-import { StorageService } from '../../../services/storageService';
-import { Authentication } from '../../../services/AuthService';
+import { Authentication, ReportFromServer } from '../../../services/AuthService';
 import { ErrorBoundary } from '../../../shared/ErrorBoundary';
 
 
@@ -21,11 +20,8 @@ class ReportPage extends React.Component {
         }
     }
     componentDidMount() {
-        const deletedReports=StorageService.get("reports")
         servicePeople.getReports()
-            .then(reports => this.setState({ candidates: reports, filteredCandidates: deletedReports ? deletedReports : reports }))
-            
-            
+            .then(reports => this.setState({ candidates: reports, filteredCandidates: reports }))
     }
 
 
@@ -54,7 +50,7 @@ class ReportPage extends React.Component {
         }
         console.log(this.state.filteredCandidates);
         this.setState({ filteredCandidates: tempArray })
-        StorageService.set('reports', tempArray)
+        ReportFromServer.remove(id)
 
     }
 
