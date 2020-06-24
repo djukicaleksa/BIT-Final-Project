@@ -19,8 +19,8 @@ export const CompanySelector = (props) => {
             </ul>
             <br></br>
             <div className={style.buttonToTheRight}>
-                <Link to='/admin/reports/createreport/3'>
-                    <Button>Next</Button></Link>
+                <Button>Previous</Button>
+                <Button>Next</Button>
             </div>
         </div >
     )
