@@ -6,6 +6,7 @@ import { Container } from 'react-materialize';
 import styles from './InfoPage.module.css';
 import { ReportList } from './ReportList/ReportList';
 import Modal from 'react-modal'
+import { ReportObj } from '../../entities/ReportObj';
 
 
 
@@ -28,6 +29,10 @@ class InfoPage extends React.Component {
 
     getReports = () => {
         servicePeople.getReports()
+            // .then(reportList => {
+            //     let newReportList = reportList.map(report => new ReportObj(report))
+            //     return newReportList;
+            // })
             .then(reportList => this.setState({ reports: reportList }))
     }
 

@@ -87,8 +87,9 @@ class ReportPage extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.filteredCandidates.map(can => (
+                            {this.state.filteredCandidates.map((can, i) => (
                                 <Report
+                                    key={i}
                                     id={can.id}
                                     phase={can.phase}
                                     company={can.companyName}
@@ -98,6 +99,7 @@ class ReportPage extends React.Component {
                                     openModal={this.openModal}
                                     isOpen={this.state.isOpen}
                                     removeReport={this.removeReport}
+                                    note={can.note}
 
                                 />
                             ))}
