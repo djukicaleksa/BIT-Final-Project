@@ -8,6 +8,7 @@ import { NavList } from './NavList/NavList';
 import { GridCandidates } from './GridCandidates/GridCandidates';
 import styles from './CreateReportPage.module.css'
 import { CompanySelector } from './CompanySelector/CompanySelector'
+import { ReportDetails } from './ReportDetails/ReportDetails'
 
 class CreateReportPage extends React.Component {
     constructor(props) {
@@ -51,9 +52,9 @@ class CreateReportPage extends React.Component {
                             <GridCandidates candidates={this.state.filteredCandid} />
                         </Container>
                     </Row>
-                    <ReportDetails/>
-                    </Container>
-                    
+                    <ReportDetails />
+                </Container>
+
             </div>
         )
     }
