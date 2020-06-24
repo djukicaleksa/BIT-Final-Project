@@ -16,5 +16,6 @@
     background-color: blanchedalmond;
 }
 .buttonToTheRight {
-    text-align: end;
+    display: flex;
+    justify-content: space-between;
 }

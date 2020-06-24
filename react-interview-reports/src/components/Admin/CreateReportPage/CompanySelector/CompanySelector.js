@@ -14,14 +14,11 @@ export const CompanySelector = (props) => {
             <h4>Select Company :</h4>
             <ul className={style.companyList}>
                 {props.companyList.map((company, i) => {
-                    return <li tabindex={i} className={style.companyListItem}>{company.name}</li>
+                    return <li tabindex={i} className={style.companyListItem} onClick={() => { props.getData(company.id, company.name) }}>{company.name} </li>
                 })}
             </ul>
             <br></br>
-            <div className={style.buttonToTheRight}>
-                <Link to='/admin/reports/createreport/3'>
-                    <Button>Next</Button></Link>
-            </div>
+
         </div >
     )
 }
