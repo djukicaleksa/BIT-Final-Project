@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collection, CollectionItem, Icon, Col, Row } from 'react-materialize';
+import { Collection, CollectionItem, Icon, Col } from 'react-materialize';
 import styles from './Candidates.module.css'
 
 
@@ -11,7 +11,7 @@ const Candidates = (props) => {
       s={12}
     >
       <Collection onClick={() => { props.getData(props.candidate.id, props.candidate.name) }}>
-        <CollectionItem className={`avatar ${styles.collection}`}>
+        <CollectionItem tabindex={props.i} className={`avatar ${styles.collection}`}>
           <img
             alt=""
             className="circle"
@@ -22,7 +22,6 @@ const Candidates = (props) => {
           </span>
           <p>
             {props.candidate.email}
-
           </p>
           <a
             className="secondary-content"

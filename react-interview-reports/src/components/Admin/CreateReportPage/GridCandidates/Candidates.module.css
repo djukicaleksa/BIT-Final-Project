@@ -1,6 +1,9 @@
 .pad {
 	padding-right: 0px !important;
 }
-.collection:hover{
-	background-color: blanchedalmond;
+.collection:hover {
+	background-color: blanchedalmond !important;
+}
+.collection:focus {
+	background-color: blanchedalmond !important;
 }

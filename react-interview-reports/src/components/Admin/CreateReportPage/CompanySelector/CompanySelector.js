@@ -11,7 +11,6 @@ export const CompanySelector = (props) => {
 
     return (
         <div className={style.wrapper}>
-            <h4>Select Company :</h4>
             <ul className={style.companyList}>
                 {props.companyList.map((company, i) => {
                     return <li tabindex={i} className={style.companyListItem} onClick={() => { props.getData(company.id, company.name) }}>{company.name} </li>

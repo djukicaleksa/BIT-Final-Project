@@ -4,12 +4,17 @@
 }
 .btn {
 	margin-top: 10vh;
+	marginp-right: 0px !important;
+}
+.btn1 {
+	margin-top: 10vh;
+	margin-right: 800px;
 }
 .btndiv {
 	display: flex;
 	justify-content: space-between;
 }
-.btnEnd{
+.btnEnd {
 	text-align: end;
 }
 
@@ -20,3 +25,4 @@
 .flex {
 	display: flex;
 }
+

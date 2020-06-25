@@ -24,36 +24,26 @@ class ReportPage extends React.Component {
             .then(reports => this.setState({ candidates: reports, filteredCandidates: reports }))
     }
 
-
     searchedReports = (textInput) => {
         const results = search(this.state.candidates, ['companyName', 'candidateName'], textInput)
         this.setState({ filteredCandidates: results })
     }
-
 
     openModal = () => {
         this.setState(prevState => ({ isOpen: !prevState.isOpen }))
     }
 
     removeReport = (id) => {
-        console.log(id);
         let tempArray = this.state.filteredCandidates
-
         let elementToRemove = this.state.filteredCandidates.filter(report => report.id === id)
-        console.log(elementToRemove);
         const index = tempArray.indexOf(elementToRemove[0]);
-        console.log(index);
-
         if (index > -1) {
             tempArray.splice(index, 1)
-
         }
-        console.log(this.state.filteredCandidates);
         this.setState({ filteredCandidates: tempArray })
         ReportFromServer.remove(id)
 
     }
-
 
     render() {
         const access = Authentication.isLogon()
@@ -72,8 +62,7 @@ class ReportPage extends React.Component {
                             <tr>
                                 <th data-field="company">
                                     Company
-
-                            </th>
+                                </th>
                                 <th data-field="name">
                                     Candidate
                             </th>
@@ -83,7 +72,6 @@ class ReportPage extends React.Component {
                                 <th data-field="status">
                                     Status
                             </th>
-
                             </tr>
                         </thead>
                         <tbody>

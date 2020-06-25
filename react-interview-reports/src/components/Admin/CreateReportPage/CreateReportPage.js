@@ -107,7 +107,7 @@ class CreateReportPage extends React.Component {
                                 {this.state.wizardStep === 3 && <ReportDetails />}
                             </Row>
                             <Row className={styles.btndiv} >
-                                <Col lg={4}><Button onClick={this.previousStep} className={styles.btn} >Previous</Button></Col>
+                                <Col lg={4}><Button onClick={this.previousStep} className={styles.btn1} >Previous</Button></Col>
                                 <Col lg={8}><Button onClick={this.nextStep} className={`${styles.btn} ${styles.btnEnd}`} >Next</Button></Col>
                             </Row>
                         </Col>
