@@ -28,7 +28,6 @@ class Home extends React.Component {
             })
     }
 
-
     searchedCandidates =(textInput)=>{    
      const res =   search(this.state.candidatesList, ['name'], textInput)
         this.setState({filteredCandidate: res})

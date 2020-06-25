@@ -1,6 +1,7 @@
 import React from 'react';
 import { Select, Row, Col, DatePicker, Textarea } from 'react-materialize';
-const ReportDetails = () => {
+import styles from './ReportDetails.module.css'
+const ReportDetails = ({candidate, company}) => {
   return (
     <div>
       <Row>
@@ -183,6 +184,8 @@ const ReportDetails = () => {
           />
         </Col>
       </Row>
+      <h5>{candidate}</h5>
+      <h5>{company}</h5>
     </div>
   )
 }

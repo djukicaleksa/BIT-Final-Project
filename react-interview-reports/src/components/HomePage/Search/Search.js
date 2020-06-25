@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavItem, Navbar, Icon } from 'react-materialize';
-
+import styles from './Search.module.css';
 
 const Search = ({ searchedCandidates }) => {
 
@@ -10,7 +10,7 @@ const Search = ({ searchedCandidates }) => {
   }
 
   return (
-    <Navbar
+    <Navbar className={styles.search}
       alignLinks="right"
       brand={<a className="brand-logo" href="/">HUehue</a>}
       id="mobile-nav"

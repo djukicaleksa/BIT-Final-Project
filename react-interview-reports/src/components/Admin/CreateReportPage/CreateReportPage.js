@@ -10,6 +10,7 @@ import styles from './CreateReportPage.module.css'
 import { ReportDetails } from './ReportDetails/ReportDetails';
 import { Authentication } from '../../../services/AuthService';
 import { CompanySelector } from './CompanySelector/CompanySelector'
+import {Link} from 'react-router-dom';
 
 class CreateReportPage extends React.Component {
     constructor(props) {
@@ -20,7 +21,15 @@ class CreateReportPage extends React.Component {
             companyList: [],
             wizardStep: 1,
             buttonText: 'Next',
-            newReportData: { candidateId: null, candidateName: null, companyId: null, companyName: null, interviewDate: '', phase: '', status: '', note: '' }
+            newReportData: { 
+                candidateId: null,
+                candidateName: null,
+                companyId: null,
+                companyName: null,
+                interviewDate: null,
+                phase: '', 
+                status: '',
+                note: '' }
         }
     }
     componentDidMount() {
@@ -75,6 +84,7 @@ class CreateReportPage extends React.Component {
             console.log(token)
             console.log(this.state.newReportData)
             servicePeople.post(this.state.newReportData, token)
+
         }
     }
 
@@ -157,13 +167,41 @@ class CreateReportPage extends React.Component {
                         </Col>
                         <Col lg={8}>
                             <Row>
-                                {this.state.wizardStep === 1 && <GridCandidates candidates={this.state.filteredCandid} getData={this.getCandidateData} />}
-                                {this.state.wizardStep === 2 && <CompanySelector companyList={this.state.companyList} getData={this.getCompanyData} />}
-                                {this.state.wizardStep === 3 && <ReportDetails />}
+                                {this.state.wizardStep === 1 && <GridCandidates
+                                 candidates={this.state.filteredCandid}
+                                 getData={this.getCandidateData} />}
+
+                                {this.state.wizardStep === 2 && <CompanySelector
+                                 companyList={this.state.companyList}
+                                 getData={this.getCompanyData}
+                                 candidate={this.state.newReportData.candidateName}
+                                  />}
+
+                                {this.state.wizardStep === 3 && <ReportDetails
+                                    candidate={this.state.newReportData.candidateName}
+                                    company={this.state.newReportData.companyName}
+                                 />}
                             </Row>
                             <Row className={styles.btndiv} >
+
                                 <Col lg={4}><Button onClick={this.previousStep} className={styles.btn1} >Previous</Button></Col>
-                                <Col lg={8}><Button onClick={this.nextStep} className={`${styles.btn} ${styles.btnEnd}`} >Next</Button></Col>
+
+                                <Col lg={8}>
+                                    { this.state.wizardStep !== 3 ? 
+                                  <Button
+                                 onClick={this.nextStep}
+                                 className={`${styles.btn}
+                                 ${styles.btnEnd}` }
+                                 >{this.state.buttonText}
+                                </Button>
+                                : <Link to="/admin/reports"> <Button
+                                onClick={this.nextStep}
+                                className={`${styles.btn}
+                                ${styles.btnEnd}` }
+                                >{this.state.buttonText}
+                               </Button> </Link>
+                                    }
+                                 </Col>
 
                             </Row>
                         </Col>

@@ -13,11 +13,17 @@ export const CompanySelector = (props) => {
         <div className={style.wrapper}>
             <ul className={style.companyList}>
                 {props.companyList.map((company, i) => {
-                    return <li tabindex={i} className={style.companyListItem} onClick={() => { props.getData(company.id, company.companyName) }}>{company.companyName} </li>
+                    return <li tabindex={i}
+                    className={style.companyListItem}
+                    onClick={() => { props.getData(company.id, company.companyName) }}>
+                    {company.companyName} 
+                          </li>
                 })}
             </ul>
             <br></br>
-
+            {console.log(props.candidate)};
+            
+            <h5>{props.candidate}</h5>
         </div >
     )
 }

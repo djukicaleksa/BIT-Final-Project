@@ -15,7 +15,7 @@ const Candidates = (props) => {
           <img
             alt=""
             className="circle"
-            src="../../userImg.jpg"
+            src="../../usersImg.png"
           />
           <span className="title">
             {props.candidate.name}

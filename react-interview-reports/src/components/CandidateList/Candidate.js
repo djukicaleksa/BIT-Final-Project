@@ -1,23 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Card, Icon, CardTitle } from 'react-materialize';
-
+import { Col, Card, Icon, CardTitle } from 'react-materialize';
+import styles from './Candidate.module.css';
 
 
 
 export const Candidate = ({ name, email, key, id }) => {
     return (
-
-
         <Col
             m={4}
             s={12}
             key={key}
         >
-            <Link to={`./info/${id}`}><Card
-                className='center-align'
+            <Link to={`./info/${id}`}>
+                <Card
+                className={`${styles.candidate} center-align`}
                 closeIcon={<Icon>close</Icon>}
-                header={<CardTitle image='./userImg.jpg' reveal waves="light" />}
+                header={<CardTitle image='./usersImg.png' reveal waves="light" />}
                 reveal
                 revealIcon={<Icon>search</Icon>}
                 title={name}
@@ -28,6 +27,5 @@ export const Candidate = ({ name, email, key, id }) => {
             </Card>
             </Link>
         </Col>
-
     )
 }

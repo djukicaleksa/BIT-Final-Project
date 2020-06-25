@@ -14,5 +14,4 @@ const NavList = () =>{
     )
 }
 
-
 export {NavList}
