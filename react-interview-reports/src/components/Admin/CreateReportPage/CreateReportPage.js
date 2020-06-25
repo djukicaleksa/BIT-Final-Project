@@ -7,7 +7,7 @@ import { servicePeople } from '../../../services/servicePeople';
 import { NavList } from './NavList/NavList';
 import { GridCandidates } from './GridCandidates/GridCandidates';
 import styles from './CreateReportPage.module.css'
-import {ReportDetails} from './ReportDetails/ReportDetails';
+import { ReportDetails } from './ReportDetails/ReportDetails';
 import { Authentication } from '../../../services/AuthService';
 import { CompanySelector } from './CompanySelector/CompanySelector'
 
@@ -21,7 +21,8 @@ class CreateReportPage extends React.Component {
             filteredCandid: [],
             companyList: [],
             wizardStep: 1,
-            newReportData: { name: null, candidateId: null, candidateName: null, companyId: null, companyName: null, interviewDate: null, phase: null, status: null, note: null }
+            buttonText: 'Next',
+            newReportData: { candidateId: null, candidateName: null, companyId: null, companyName: null, interviewDate: null, phase: null, status: null, note: null }
         }
     }
     componentDidMount() {
@@ -42,15 +43,37 @@ class CreateReportPage extends React.Component {
 
     nextStep = () => {
         let currentStep = this.state.wizardStep;
-        if (currentStep < 3) {
-            currentStep++;
-            this.setState({ wizardStep: currentStep })
-        } else {
-            this.uploadData()
+        if (currentStep === 1) {
+            if (this.state.newReportData.candidateId !== null) {
+                currentStep++;
+                this.setState({ wizardStep: currentStep })
+            } else {
+                alert('You must select a candidate first!')
+            }
+        } else if (currentStep === 2) {
+            if (this.state.newReportData.companyId !== null) {
+                currentStep++;
+                this.setState({ wizardStep: currentStep })
+                this.setState({ buttonText: 'Create Report' })
+            } else {
+                alert('You must select a company first!')
+            }
+
+        } else if (currentStep === 3) {
+
+            console.log('sending data')
+
+            alert('You must fill every field')
         }
+
     }
 
+
+
+
+
     previousStep = () => {
+        this.setState({ buttonText: 'Next' })
         let currentStep = this.state.wizardStep;
         if (currentStep > 1) {
             currentStep--;
@@ -69,7 +92,7 @@ class CreateReportPage extends React.Component {
     getCandidateData = (id, name) => {
         console.log(id, name);
         let someReport = { ...this.state.newReportData }
-        someReport.name = name;
+        someReport.candidateName = name;
         someReport.candidateId = id
         this.setState({ newReportData: someReport })
 
@@ -82,6 +105,11 @@ class CreateReportPage extends React.Component {
         someReport.companyName = name;
         someReport.companyId = id;
         this.setState({ newReportData: someReport })
+    }
+
+    getFormData = (status, phase, note, interviewDate) => {
+        console.log(status, phase, note, interviewDate)
+        let someReport = { ...this.state.newReportData }
     }
 
     render() {
@@ -108,7 +136,7 @@ class CreateReportPage extends React.Component {
                             </Row>
                             <Row className={styles.btndiv} >
                                 <Col lg={4}><Button onClick={this.previousStep} className={styles.btn} >Previous</Button></Col>
-                                <Col lg={8}><Button onClick={this.nextStep} className={`${styles.btn} ${styles.btnEnd}`} >Next</Button></Col>
+                                <Col lg={8}><Button onClick={this.nextStep} className={`${styles.btn} ${styles.btnEnd}`} >{this.state.buttonText}</Button></Col>
                             </Row>
                         </Col>
                     </Row>
