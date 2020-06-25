@@ -34,7 +34,7 @@ class LoginPage extends React.Component {
     render() {
         return (
             <Container>
-                <div className={styles.loginForm}>
+                <div onKeyUp={(event)=>{if(event.keyCode === 13){this.submitData()}}} className={styles.loginForm}>
                     <div><i className={`fa fa-user ${styles.user}`}>
                         {this.state.wrongUser ? <span className={styles.wrong}> wrong email or password</span> : ""}
                     </i>

@@ -1,7 +1,7 @@
 export class CompanyObj {
     constructor(companyApi) {
         this.id = companyApi.id;
-        this.name = companyApi.name;
+        this.companyName = companyApi.name;
         this.email = companyApi.email;
     }
 }
