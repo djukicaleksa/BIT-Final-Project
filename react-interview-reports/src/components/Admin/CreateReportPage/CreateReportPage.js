@@ -22,7 +22,7 @@ class CreateReportPage extends React.Component {
             companyList: [],
             wizardStep: 1,
             buttonText: 'Next',
-            newReportData: { candidateId: null, candidateName: null, companyId: null, companyName: null, interviewDate: null, phase: null, status: null, note: null }
+            newReportData: { candidateId: null, candidateName: null, companyId: null, companyName: null, interviewDate: '', phase: '', status: '', note: '' }
         }
     }
     componentDidMount() {
@@ -62,8 +62,12 @@ class CreateReportPage extends React.Component {
         } else if (currentStep === 3) {
 
             console.log('sending data')
+            this.getFormData();
+            let token = JSON.parse(sessionStorage.getItem('accessToken'));
+            console.log(token)
+            console.log(this.state.newReportData)
+            servicePeople.post(this.state.newReportData, token)
 
-            alert('You must fill every field')
         }
 
     }
@@ -107,9 +111,22 @@ class CreateReportPage extends React.Component {
         this.setState({ newReportData: someReport })
     }
 
-    getFormData = (status, phase, note, interviewDate) => {
-        console.log(status, phase, note, interviewDate)
+    getFormData = () => {
+
         let someReport = { ...this.state.newReportData }
+        let $reportStatus = document.getElementById('reportStatus');
+        let $reportPhase = document.getElementById('reportPhase');
+        let reportDate = document.querySelector('.year-text').textContent + document.querySelector('.date-text').textContent;
+        let $reportNotes = document.getElementById('reportNotes');
+        console.log($reportStatus)
+        someReport.status = $reportStatus.value;
+        someReport.phase = $reportPhase.value;
+        someReport.interviewDate = reportDate
+        someReport.note = $reportNotes.value;
+        console.log(someReport);
+        this.setState({ newReportData: someReport })//this state is not being set for some reason :O
+
+        console.log(this.state.newReportData)
     }
 
     render() {

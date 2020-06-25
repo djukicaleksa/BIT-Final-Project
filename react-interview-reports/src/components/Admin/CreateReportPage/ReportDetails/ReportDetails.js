@@ -7,9 +7,10 @@ const ReportDetails = () => {
 
         <Col lg={4}>
           <DatePicker
-            id="datePicker"
+            id="reportDate'"
             label="Interview Date:"
             required
+            
             options={{
               autoClose: false,
               container: null,
@@ -99,8 +100,10 @@ const ReportDetails = () => {
         </Col>
         <Col lg={4}>
           <Select
-            id="Select-9"
+            
+            id='reportPhase'
             label="Phase:"
+            required
             multiple={false}
             options={{
               classes: '',
@@ -137,8 +140,9 @@ const ReportDetails = () => {
         </Col>
         <Col lg={4}>
           <Select
-          required
-            id="Select-9"
+            required
+            
+            id='reportStatus'
             label="Status:"
             multiple={false}
             options={{
@@ -173,7 +177,8 @@ const ReportDetails = () => {
       <Row>
         <Col lg={12}>
           <Textarea
-            id="Textarea-12"
+            required
+            id='reportNotes'
             label="Write something here..."
           />
         </Col>
