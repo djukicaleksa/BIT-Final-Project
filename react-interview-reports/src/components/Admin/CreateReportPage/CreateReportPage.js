@@ -10,6 +10,7 @@ import styles from './CreateReportPage.module.css'
 import { ReportDetails } from './ReportDetails/ReportDetails';
 import { Authentication } from '../../../services/AuthService';
 import { CompanySelector } from './CompanySelector/CompanySelector'
+import {Link} from 'react-router-dom';
 
 class CreateReportPage extends React.Component {
     constructor(props) {
@@ -158,13 +159,29 @@ class CreateReportPage extends React.Component {
                         <Col lg={8}>
                             <Row>
                                 {this.state.wizardStep === 1 && <GridCandidates candidates={this.state.filteredCandid} getData={this.getCandidateData} />}
-                                {this.state.wizardStep === 2 && <CompanySelector companyList={this.state.companyList} getData={this.getCompanyData} />}
-                                {this.state.wizardStep === 3 && <ReportDetails />}
+                                {this.state.wizardStep === 2 && <CompanySelector  candidate={this.state.newReportData.candidateName} companyList={this.state.companyList} getData={this.getCompanyData} />}
+                                {this.state.wizardStep === 3 && <ReportDetails
+                                 candidate={this.state.newReportData.candidateName}
+                                 company={this.state.newReportData.companyName}
+                                  />}
                             </Row>
                             <Row className={styles.btndiv} >
                                 <Col lg={4}><Button onClick={this.previousStep} className={styles.btn1} >Previous</Button></Col>
-                                <Col lg={8}><Button onClick={this.nextStep} className={`${styles.btn} ${styles.btnEnd}`} >Next</Button></Col>
 
+                                { this.state.wizardStep !== 3 ? 
+                                    <Button
+                                        onClick={this.nextStep}
+                                        className={`${styles.btn}
+                                        ${styles.btnEnd}` }
+                                        >{this.state.buttonText}
+                                        </Button>
+                                        : <Link to="/admin/reports"> <Button
+                                        onClick={this.nextStep}
+                                        className={`${styles.btn}
+                                        ${styles.btnEnd}` }
+                                        >{this.state.buttonText}
+                                        </Button> </Link>
+                                }
                             </Row>
                         </Col>
                     </Row>

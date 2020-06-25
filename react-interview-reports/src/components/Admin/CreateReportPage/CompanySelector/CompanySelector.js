@@ -17,7 +17,7 @@ export const CompanySelector = (props) => {
                 })}
             </ul>
             <br></br>
-
+              <h5>{props.candidate}</h5>
         </div >
     )
 }
