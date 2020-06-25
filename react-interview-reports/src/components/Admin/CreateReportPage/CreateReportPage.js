@@ -72,10 +72,6 @@ class CreateReportPage extends React.Component {
 
     }
 
-
-
-
-
     previousStep = () => {
         this.setState({ buttonText: 'Next' })
         let currentStep = this.state.wizardStep;
@@ -86,7 +82,6 @@ class CreateReportPage extends React.Component {
             alert('NO STEPS BEHIND')
         }
     }
-
 
     uploadData = () => {
         console.log('test');
