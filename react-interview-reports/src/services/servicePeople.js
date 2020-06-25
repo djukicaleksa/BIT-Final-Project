@@ -2,6 +2,7 @@ import { baseAPI } from '../shared/baseAPI'
 import { ReportObj } from '../entities/ReportObj'
 import { CompanyObj } from '../entities/CompanyObj'
 import { CandidateObj } from '../entities/CandidateObj'
+import Axios from 'axios'
 
 // http://localhost:3333/api/companies
 // http://localhost:3333/api/candidates
@@ -46,10 +47,24 @@ class ServicePeople {
             .catch(error => console.log(error))
     }
 
-    postReport(reportObject) {
-        return baseAPI.post('reports', reportObject)
+    postReport(reportObject, token) {
+        return baseAPI.post('reports', reportObject, {
+
+            Authorization: `Bearer ${token}`
+        })
             .then(response => console.log(response))
             .catch(error => console.log(error))
+    }
+
+    post(reportObj, token) {
+        return Axios({
+            method: 'POST',
+            url: 'http://localhost:3333/api/reports',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            data: reportObj
+        })
     }
 }
 
