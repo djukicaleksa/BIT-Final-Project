@@ -27,9 +27,9 @@ const Header = () => {
       <Link to='/admin'><NavItem>
         Login
   </NavItem></Link>
-      <NavItem>
+      <Link to='/'><NavItem>
         Candidates
-  </NavItem>
+  </NavItem></Link>
     </Navbar>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { DetailedReport } from '../../../shared/DetailedReport/DetailedReport'
 
-const Report = ({ company, name, date, status, isOpen, openModal, phase, removeReport, id, note }) => {
+const Report = ({ company, name, date, status, modalIsOpen, openModal, phase, removeReport, id, note }) => {
     const report = { companyName: company, candidateName: name, interviewDate: date, status, phase, note }
     console.log(report);
 
@@ -27,7 +27,7 @@ const Report = ({ company, name, date, status, isOpen, openModal, phase, removeR
             <td>
                 <i className="fa fa-close" data-id={id} onClick={() => { removeReport(id) }}></i>
             </td>
-            <DetailedReport isOpen={isOpen} openModal={openModal} report={report}></DetailedReport>
+            <DetailedReport modalIsOpen={modalIsOpen} openModal={openModal} report={report}></DetailedReport>
         </tr>
 
     )

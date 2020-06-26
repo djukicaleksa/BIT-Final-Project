@@ -28,7 +28,7 @@ export const ReportList = (props) => {
                             <td>{convertDate(report.interviewDate)}</td>
                             <td>{report.status}</td>
                             <td width='20px'><i className="fa fa-eye" onClick={() => { props.openModal() }}></i></td>
-                            <DetailedReport isOpen={props.isOpen} openModal={props.openModal} report={report} />
+                            <DetailedReport modalIsOpen={props.modalIsOpen} openModal={props.openModal} report={report} />
 
 
                         </tr>)

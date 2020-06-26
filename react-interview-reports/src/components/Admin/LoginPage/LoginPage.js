@@ -1,7 +1,9 @@
 import React from 'react';
-import { TextInput, Container, Button } from 'react-materialize';
-import { postAdmin } from '../../../services/serviceAdmin';
+
 import styles from './LoginPage.module.css';
+
+import { postAdmin } from '../../../services/serviceAdmin';
+import { TextInput, Container, Button } from 'react-materialize';
 import { StorageService } from '../../../services/storageService';
 
 class LoginPage extends React.Component {
@@ -13,21 +15,27 @@ class LoginPage extends React.Component {
             wrongUser: false
         }
     }
+
     loginCheck = (event) => {
-        this.setState({ [event.target.name]: event.target.value })
+        this.setState({ [event.target.name]: event.target.value }) 
     }
 
     submitData = () => {
 
         postAdmin(this.state)
+        
             .then(response => {
+
                 console.log(response);
                 StorageService.set('accessToken', response.data.accessToken)
                 this.props.history.push('/admin/reports')
+                
             })
             .catch(error => {
+
                 console.log(error);
                 this.setState({ wrongUser: true })
+
             });
     }
 
