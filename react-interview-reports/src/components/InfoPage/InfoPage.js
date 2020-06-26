@@ -16,7 +16,7 @@ class InfoPage extends React.Component {
         this.state = {
             candidates: [],
             reports: [],
-            isOpen: false
+            modalIsOpen: false
         }
     }
     componentDidMount() {
@@ -37,7 +37,7 @@ class InfoPage extends React.Component {
     }
 
     openModal = () => {
-        this.setState(prevState => ({ isOpen: !prevState.isOpen }))
+        this.setState(prevState => ({ modalIsOpen: !prevState.modalIsOpen }))
     }
 
 
@@ -54,7 +54,7 @@ class InfoPage extends React.Component {
                         birthday={this.state.candidates.birthday}
                     />
                     <h4>Reports</h4>
-                    <ReportList reports={this.state.reports} candidateId={this.props.match.params.id} openModal={this.openModal} isOpen={this.state.isOpen}></ReportList>
+                    <ReportList reports={this.state.reports} candidateId={this.props.match.params.id} openModal={this.openModal} modalIsOpen={this.state.modalIsOpen}></ReportList>
 
                 </Container>
             </div>

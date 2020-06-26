@@ -1,13 +1,15 @@
 import React from 'react';
-import { servicePeople } from '../../../services/servicePeople';
-import { AdminHeader } from '../AdminHeader/AdminHeader';
-import { Table, Container } from 'react-materialize';
+
+import styles from './ReportsPage.module.css';
+
 import { Report } from './Report';
 import { ReportsSearch } from './Search/Search';
 import { search } from '../../../shared/utilities';
-import styles from './ReportsPage.module.css';
-import { Authentication, ReportFromServer } from '../../../services/AuthService';
+import { Table, Container } from 'react-materialize';
+import { AdminHeader } from '../AdminHeader/AdminHeader';
 import { ErrorBoundary } from '../../../shared/ErrorBoundary';
+import { servicePeople } from '../../../services/servicePeople';
+import { Authentication, ReportFromServer } from '../../../services/AuthService';
 
 
 class ReportPage extends React.Component {
@@ -16,7 +18,7 @@ class ReportPage extends React.Component {
         this.state = {
             candidates: [],
             filteredCandidates: [],
-            isOpen: false
+            modalIsOpen: false
         }
     }
     componentDidMount() {
@@ -30,7 +32,7 @@ class ReportPage extends React.Component {
     }
 
     openModal = () => {
-        this.setState(prevState => ({ isOpen: !prevState.isOpen }))
+        this.setState(prevState => ({ modalIsOpen: !prevState.modalIsOpen }))
     }
 
     removeReport = (id) => {
@@ -86,7 +88,7 @@ class ReportPage extends React.Component {
                                         date={can.interviewDate}
                                         status={can.status}
                                         openModal={this.openModal}
-                                        isOpen={this.state.isOpen}
+                                        modalIsOpen={this.state.modalIsOpen}
                                         removeReport={this.removeReport}
                                         note={can.note}
 

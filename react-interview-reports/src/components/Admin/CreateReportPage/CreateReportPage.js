@@ -1,16 +1,18 @@
 import React from 'react';
-import { AdminHeader } from '../AdminHeader/AdminHeader';
-import { search } from '../../../shared/utilities';
-import { SearchReportPage } from './SearchReportPage/SearchReportPage';
-import { Container, Row, Col, Button } from 'react-materialize';
-import { servicePeople } from '../../../services/servicePeople';
-import { NavList } from './NavList/NavList';
-import { GridCandidates } from './GridCandidates/GridCandidates';
+
 import styles from './CreateReportPage.module.css'
+
+import { Link } from 'react-router-dom';
+import { NavList } from './NavList/NavList';
+import { search } from '../../../shared/utilities';
+import { AdminHeader } from '../AdminHeader/AdminHeader';
 import { ReportDetails } from './ReportDetails/ReportDetails';
 import { Authentication } from '../../../services/AuthService';
-import { CompanySelector } from './CompanySelector/CompanySelector'
-import { Link } from 'react-router-dom';
+import { servicePeople } from '../../../services/servicePeople';
+import { Container, Row, Col, Button } from 'react-materialize';
+import { GridCandidates } from './GridCandidates/GridCandidates';
+import { CompanySelector } from './CompanySelector/CompanySelector';
+import { SearchReportPage } from './SearchReportPage/SearchReportPage';
 
 class CreateReportPage extends React.Component {
     constructor(props) {
@@ -21,7 +23,16 @@ class CreateReportPage extends React.Component {
             companyList: [],
             wizardStep: 1,
             buttonText: 'Next',
-            newReportData: { candidateId: null, candidateName: null, companyId: null, companyName: null, interviewDate: '', phase: '', status: '', note: '' }
+            newReportData: {
+                candidateId: null,
+                candidateName: null,
+                companyId: null,
+                companyName: null,
+                interviewDate: '',
+                phase: '',
+                status: '',
+                note: ''
+            }
         }
     }
     componentDidMount() {
@@ -30,9 +41,8 @@ class CreateReportPage extends React.Component {
                 this.setState({ candidates: data, filteredCandid: data })
             })
         servicePeople.getCompanies()
-            .then(companyList => {
-                this.setState({ companyList })
-            })
+            .then(companyList => this.setState({ companyList }))
+
         let first = document.querySelector('#first')
         first.className = `${styles.bold}`;
     }
@@ -44,6 +54,7 @@ class CreateReportPage extends React.Component {
 
     nextStep = () => {
         let currentStep = this.state.wizardStep;
+
         if (currentStep === 1) {
             if (this.state.newReportData.candidateId !== null) {
                 currentStep++;
@@ -71,7 +82,7 @@ class CreateReportPage extends React.Component {
 
         } else if (currentStep === 3) {
             console.log('sending data')
-            this.getFormData();
+            // this.getFormData();
             let token = JSON.parse(sessionStorage.getItem('accessToken'));
             console.log(token)
             console.log(this.state.newReportData)
@@ -122,24 +133,24 @@ class CreateReportPage extends React.Component {
         this.setState({ newReportData: someReport })
     }
 
-    getFormData = () => {
+    // getFormData = () => {
 
-        let someReport = { ...this.state.newReportData }
-        let $reportStatus = document.getElementById('reportStatus');
-        let $reportPhase = document.getElementById('reportPhase');
+    //     let someReport = { ...this.state.newReportData }
+    //     let $reportStatus = document.getElementById('reportStatus');
+    //     let $reportPhase = document.getElementById('reportPhase');
 
-        let $reportNotes = document.getElementById('reportNotes');
-        console.log($reportStatus)
+    //     let $reportNotes = document.getElementById('reportNotes');
+    //     console.log($reportStatus)
 
-        someReport.status = $reportStatus.value;
-        someReport.phase = $reportPhase.value;
+    //     someReport.status = $reportStatus.value;
+    //     someReport.phase = $reportPhase.value;
 
-        someReport.note = $reportNotes.value;
-        console.log(someReport, "some report");
-        setTimeout(() => { this.setState({ newReportData: someReport }, console.log('state test', this.state.newReportData)) }, 2000);//this state is not being set for some reason :O
+    //     someReport.note = $reportNotes.value;
+    //     console.log(someReport, "some report");
+    //     setTimeout(() => { this.setState({ newReportData: someReport }, console.log('state test', this.state.newReportData)) }, 2000);//this state is not being set for some reason :O
 
 
-    }
+    // }
     setDate = (date) => {
         let someReport = { ...this.state.newReportData }
         someReport.interviewDate = date;
@@ -187,8 +198,16 @@ class CreateReportPage extends React.Component {
                         </Col>
                         <Col lg={8}>
                             <Row>
-                                {this.state.wizardStep === 1 && <GridCandidates candidates={this.state.filteredCandid} getData={this.getCandidateData} />}
-                                {this.state.wizardStep === 2 && <CompanySelector candidate={this.state.newReportData.candidateName} companyList={this.state.companyList} getData={this.getCompanyData} />}
+
+                                {this.state.wizardStep === 1 && <GridCandidates
+                                    candidates={this.state.filteredCandid}
+                                    getData={this.getCandidateData} />}
+
+                                {this.state.wizardStep === 2 && <CompanySelector
+                                    candidate={this.state.newReportData.candidateName}
+                                    companyList={this.state.companyList}
+                                    getData={this.getCompanyData} />}
+
                                 {this.state.wizardStep === 3 && <ReportDetails
                                     candidate={this.state.newReportData.candidateName}
                                     company={this.state.newReportData.companyName}

@@ -1,12 +1,16 @@
 import React from 'react';
-import { Select, Row, Col, DatePicker, Textarea } from 'react-materialize';
+
 import styles from './ReportDetails.module.css';
+
+import { Select, Row, Col, DatePicker, Textarea } from 'react-materialize';
+
 const ReportDetails = ({ candidate, company, setDate, setPhase, setStatus, setNotes }) => {
 
   let interviewDate;
   let somePhase;
   let someStatus;
   let someNotes;
+
   const handleDateChange = (dateObj) => {
 
     interviewDate = dateObj.target.value;

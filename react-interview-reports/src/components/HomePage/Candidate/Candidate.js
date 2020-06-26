@@ -1,8 +1,7 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
-import { Row, Col, Card, Icon, CardTitle } from 'react-materialize';
-
-
+import { Col, Card, Icon, CardTitle } from 'react-materialize';
 
 
 export const Candidate = ({ name, email, key, id }) => {

@@ -9,7 +9,9 @@ import { convertDate } from '../utilities'
 
 export const DetailedReport = (props) => {
     return (<Modal
-        isOpen={props.isOpen}
+
+
+        isOpen={props.modalIsOpen}
         ariaHideApp={false}
         onRequestClose={() => { props.openModal() }}
         style={customStyles}

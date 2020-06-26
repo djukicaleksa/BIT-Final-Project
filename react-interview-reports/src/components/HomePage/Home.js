@@ -4,7 +4,7 @@ import { Header } from './Header/Header';
 import { Search } from './Search/Search';
 import { Container, Row, } from 'react-materialize';
 import { servicePeople } from '../../services/servicePeople';
-import { Candidate } from '../CandidateList/Candidate'
+import { Candidate } from './Candidate/Candidate'
 import {search} from '../../shared/utilities';
 
 
