@@ -17,7 +17,7 @@ export const Candidate = ({ name, email, key, id }) => {
             <Link to={`./info/${id}`}><Card
                 className='center-align'
                 closeIcon={<Icon>close</Icon>}
-                header={<CardTitle image='./userImg.jpg' reveal waves="light" />}
+                header={<CardTitle image='./userImg.png' reveal waves="light" />}
                 reveal
                 revealIcon={<Icon>search</Icon>}
                 title={name}

@@ -8,7 +8,7 @@ const CandidatesInfo = ({ name, email, birthday, education}) =>{
 
       <div className={styles.info}>
             <div>
-      <img className={styles.img} src="../userImg.jpg"/>
+      <img className={styles.img} src="../userImg.png"/>
       </div>
             <table className={styles.tableInfo}>
                    <thead>

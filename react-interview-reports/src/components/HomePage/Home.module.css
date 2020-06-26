@@ -1,4 +1,7 @@
-.fluid{
-    width: 100%;
-    max-width:initial;
+.fluid {
+	width: 100%;
+	max-width: initial;
+}
+.main {
+	margin-top: 20px;
 }
