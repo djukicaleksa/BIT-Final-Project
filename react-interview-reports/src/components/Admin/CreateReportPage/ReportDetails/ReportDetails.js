@@ -245,5 +245,5 @@ const ReportDetails = ({ candidate, company, setDate, setPhase, setStatus, setNo
       </div>
     )
   }
-
-  export { ReportDetails }
+}
+export { ReportDetails }
