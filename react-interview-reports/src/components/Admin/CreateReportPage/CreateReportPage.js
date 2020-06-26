@@ -10,7 +10,7 @@ import styles from './CreateReportPage.module.css'
 import { ReportDetails } from './ReportDetails/ReportDetails';
 import { Authentication } from '../../../services/AuthService';
 import { CompanySelector } from './CompanySelector/CompanySelector'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class CreateReportPage extends React.Component {
     constructor(props) {
@@ -33,8 +33,8 @@ class CreateReportPage extends React.Component {
             .then(companyList => {
                 this.setState({ companyList })
             })
-            let first =  document.querySelector('#first')
-                first.className = `${styles.bold}`;
+        let first = document.querySelector('#first')
+        first.className = `${styles.bold}`;
     }
 
     searchedCandid = (textInput) => {
@@ -48,8 +48,8 @@ class CreateReportPage extends React.Component {
             if (this.state.newReportData.candidateId !== null) {
                 currentStep++;
                 let removeFirst = document.querySelector("#first")
-                removeFirst.className="";
-                let first =  document.querySelector('#second')
+                removeFirst.className = "";
+                let first = document.querySelector('#second')
                 first.className = `${styles.bold}`;
                 this.setState({ wizardStep: currentStep })
             } else {
@@ -59,12 +59,12 @@ class CreateReportPage extends React.Component {
             if (this.state.newReportData.companyId !== null) {
                 currentStep++;
                 let removeSecond = document.querySelector("#second")
-                removeSecond.className="";
-                let first =  document.querySelector('#third')
+                removeSecond.className = "";
+                let first = document.querySelector('#third')
                 first.className = `${styles.bold}`;
                 this.setState({ wizardStep: currentStep })
                 this.setState({ buttonText: 'Create Report' })
-                
+
             } else {
                 alert('You must select a company first!')
             }
@@ -89,10 +89,10 @@ class CreateReportPage extends React.Component {
             const addPrevSec = document.querySelector('#second')
             addPrevSec.className = `${styles.bold}`
             this.setState({ wizardStep: currentStep })
-            if(currentStep <2){
+            if (currentStep < 2) {
                 currentStep--;
                 const addPrevFirst = document.querySelector('#first')
-                addPrevFirst. className = `${styles.bold}`
+                addPrevFirst.className = `${styles.bold}`
                 const removePrevSec = document.querySelector('#second')
                 removePrevSec.className = ''
             }
@@ -127,18 +127,45 @@ class CreateReportPage extends React.Component {
         let someReport = { ...this.state.newReportData }
         let $reportStatus = document.getElementById('reportStatus');
         let $reportPhase = document.getElementById('reportPhase');
-        let reportDate = document.querySelector('.year-text').textContent + document.querySelector('.date-text').textContent;
+
         let $reportNotes = document.getElementById('reportNotes');
         console.log($reportStatus)
+
         someReport.status = $reportStatus.value;
         someReport.phase = $reportPhase.value;
-        someReport.interviewDate = reportDate
-        someReport.note = $reportNotes.value;
-        console.log(someReport);
-        this.setState({ newReportData: someReport })//this state is not being set for some reason :O
 
-        console.log(this.state.newReportData)
+        someReport.note = $reportNotes.value;
+        console.log(someReport, "some report");
+        setTimeout(() => { this.setState({ newReportData: someReport }, console.log('state test', this.state.newReportData)) }, 2000);//this state is not being set for some reason :O
+
+
     }
+    setDate = (date) => {
+        let someReport = { ...this.state.newReportData }
+        someReport.interviewDate = date;
+        this.setState({ newReportData: someReport })
+        console.log(date)
+    }
+    setPhase = (phase) => {
+        let someReport = { ...this.state.newReportData }
+        console.log(phase)
+        someReport.phase = phase;
+        this.setState({ newReportData: someReport })
+    }
+    setStatus = (status) => {
+        let someReport = { ...this.state.newReportData }
+        console.log(status)
+        someReport.status = status;
+        this.setState({ newReportData: someReport })
+    }
+    setNotes = (notes) => {
+        let someReport = { ...this.state.newReportData }
+        console.log(notes)
+        someReport.note = notes;
+        this.setState({ newReportData: someReport })
+    }
+
+
 
     render() {
         const access = Authentication.isLogon()
@@ -159,28 +186,32 @@ class CreateReportPage extends React.Component {
                         <Col lg={8}>
                             <Row>
                                 {this.state.wizardStep === 1 && <GridCandidates candidates={this.state.filteredCandid} getData={this.getCandidateData} />}
-                                {this.state.wizardStep === 2 && <CompanySelector  candidate={this.state.newReportData.candidateName} companyList={this.state.companyList} getData={this.getCompanyData} />}
+                                {this.state.wizardStep === 2 && <CompanySelector candidate={this.state.newReportData.candidateName} companyList={this.state.companyList} getData={this.getCompanyData} />}
                                 {this.state.wizardStep === 3 && <ReportDetails
-                                 candidate={this.state.newReportData.candidateName}
-                                 company={this.state.newReportData.companyName}
-                                  />}
+                                    candidate={this.state.newReportData.candidateName}
+                                    company={this.state.newReportData.companyName}
+                                    setDate={this.setDate}
+                                    setPhase={this.setPhase}
+                                    setStatus={this.setStatus}
+                                    setNotes={this.setNotes}
+                                />}
                             </Row>
                             <Row className={styles.btndiv} >
                                 <Col lg={4}><Button onClick={this.previousStep} className={styles.btn1} >Previous</Button></Col>
 
-                                { this.state.wizardStep !== 3 ? 
+                                {this.state.wizardStep !== 3 ?
                                     <Button
                                         onClick={this.nextStep}
                                         className={`${styles.btn}
-                                        ${styles.btnEnd}` }
-                                        >{this.state.buttonText}
-                                        </Button>
-                                        : <Link to="/admin/reports"> <Button
+                                        ${styles.btnEnd}`}
+                                    >{this.state.buttonText}
+                                    </Button>
+                                    : <Link to="/admin/reports"> <Button
                                         onClick={this.nextStep}
                                         className={`${styles.btn}
-                                        ${styles.btnEnd}` }
-                                        >{this.state.buttonText}
-                                        </Button> </Link>
+                                        ${styles.btnEnd}`}
+                                    >{this.state.buttonText}
+                                    </Button> </Link>
                                 }
                             </Row>
                         </Col>

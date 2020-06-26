@@ -1,6 +1,53 @@
 import React from 'react';
 import { Select, Row, Col, DatePicker, Textarea } from 'react-materialize';
-const ReportDetails = ({candidate, company}) => {
+// const handleChange = (dateObj) => {
+//   this.setState({newReportData.interviewDate:dateObj.target.value})
+// }
+const ReportDetails = ({ candidate, company, setDate, setPhase, setStatus, setNotes }) => {
+
+  let interviewDate;
+  let somePhase;
+  let someStatus;
+  let someNotes;
+  const handleDateChange = (dateObj) => {
+
+    interviewDate = dateObj.target.value;
+
+  }
+
+  const handlePhaseChange = (event) => {
+    somePhase = event.currentTarget.value
+  }
+
+  const handleStatusChange = (event) => {
+    someStatus = event.currentTarget.value
+  }
+  const handleNotesChange = (event) => {
+    someNotes = event.currentTarget.value
+    setNotes(someNotes);
+  }
+
+
+  const onChangeDate = (newDate) => {
+
+    handleDateChange({
+      target: {
+        id: "myDate",
+        value: newDate
+      }
+    })
+  }
+
+  const onChangePhase = (event) => {
+    handlePhaseChange(event)
+  }
+  const onChangeStatus = (event) => {
+    handleStatusChange(event)
+  }
+  const onChangeNotes = (event) => {
+    handleNotesChange(event)
+
+  }
   return (
     <div>
       <Row>
@@ -10,6 +57,7 @@ const ReportDetails = ({candidate, company}) => {
             id="reportDate'"
             label="Interview Date:"
             required
+            onChange={onChangeDate}
             options={{
               autoClose: false,
               container: null,
@@ -84,7 +132,7 @@ const ReportDetails = ({candidate, company}) => {
               isRTL: false,
               maxDate: null,
               minDate: null,
-              onClose: null,
+              onClose: (() => { setDate(interviewDate) }),
               onDraw: null,
               onOpen: null,
               onSelect: null,
@@ -99,11 +147,12 @@ const ReportDetails = ({candidate, company}) => {
         </Col>
         <Col lg={4}>
           <Select
-            
+
             id='reportPhase'
             label="Phase:"
             required
             multiple={false}
+            onChange={onChangePhase}
             options={{
               classes: '',
               dropdownOptions: {
@@ -114,15 +163,19 @@ const ReportDetails = ({candidate, company}) => {
                 coverTrigger: true,
                 hover: false,
                 inDuration: 150,
-                onCloseEnd: null,
+                onCloseEnd: (() => { setPhase(somePhase) }),
                 onCloseStart: null,
                 onOpenEnd: null,
                 onOpenStart: null,
-                outDuration: 250
+                outDuration: 250,
+
               }
             }}
-            value="2"
+            value='1'
           >
+            <option value="1">
+
+            </option>
             <option value="cv">
               cv
   </option>
@@ -140,7 +193,7 @@ const ReportDetails = ({candidate, company}) => {
         <Col lg={4}>
           <Select
             required
-            
+            onChange={onChangePhase}
             id='reportStatus'
             label="Status:"
             multiple={false}
@@ -154,15 +207,18 @@ const ReportDetails = ({candidate, company}) => {
                 coverTrigger: true,
                 hover: false,
                 inDuration: 150,
-                onCloseEnd: null,
+                onCloseEnd: (() => { setStatus(someStatus) }),
                 onCloseStart: null,
                 onOpenEnd: null,
                 onOpenStart: null,
                 outDuration: 250
               }
             }}
-            value="2"
+            value='1'
           >
+            <option value="1">
+
+            </option>
             <option value="passed">
               passed
     </option>
@@ -179,11 +235,12 @@ const ReportDetails = ({candidate, company}) => {
             required
             id='reportNotes'
             label="Write something here..."
+            onChange={onChangeNotes}
           />
         </Col>
       </Row>
-          <h5>{candidate}</h5>
-          <h5>{company}</h5>
+      <h5>{candidate}</h5>
+      <h5>{company}</h5>
     </div>
   )
 }
