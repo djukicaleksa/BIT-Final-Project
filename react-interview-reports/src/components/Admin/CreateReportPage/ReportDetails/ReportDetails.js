@@ -1,5 +1,6 @@
 import React from 'react';
 import { Select, Row, Col, DatePicker, Textarea } from 'react-materialize';
+import styles from './ReportDetails.module.css';
 const ReportDetails = ({candidate, company}) => {
   return (
     <div>
@@ -175,7 +176,7 @@ const ReportDetails = ({candidate, company}) => {
       </Row>
       <Row>
         <Col lg={12}>
-          <Textarea
+          <Textarea className={styles.textarea}
             required
             id='reportNotes'
             label="Write something here..."

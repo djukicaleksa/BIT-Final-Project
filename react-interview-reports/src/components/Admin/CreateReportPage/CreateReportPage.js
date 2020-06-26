@@ -140,6 +140,8 @@ class CreateReportPage extends React.Component {
         console.log(this.state.newReportData)
     }
 
+
+
     render() {
         const access = Authentication.isLogon()
         if (!access) {
